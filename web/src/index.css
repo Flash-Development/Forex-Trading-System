@@ -1,0 +1,1034 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 强制显示滚动条以确保所有页面布局一致 */
+html {
+  overflow-y: scroll;
+}
+
+:root {
+  /* FTS Design System — matched to mobile palette */
+  --fts-gold: #3B82F6;
+  --fts-bg: #000000;
+  --fts-accent: #22D3EE;
+  --fts-glass: rgba(0, 0, 0, 0.7);
+  --fts-border: rgba(59, 130, 246, 0.2);
+
+  /* Glows */
+  --glow-primary: 0 0 20px rgba(59, 130, 246, 0.3);
+  --glow-accent: 0 0 20px rgba(34, 211, 238, 0.3);
+  --glow-text: 0 0 10px rgba(59, 130, 246, 0.5);
+
+  --background: #000000;
+  --header-bg: rgba(0, 0, 0, 0.85);
+
+  --glass-bg: rgba(0, 0, 0, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --panel-bg: rgba(18, 24, 38, 0.6);
+  --panel-bg-hover: rgba(26, 34, 54, 0.8);
+  --panel-border: rgba(42, 52, 74, 0.8);
+  --panel-border-hover: rgba(59, 130, 246, 0.5);
+
+  --foreground: #E5E7EB;
+  --text-primary: #E5E7EB;
+  --text-secondary: #9CA3AF;
+  --text-tertiary: #6B7280;
+  --text-disabled: #4B5563;
+
+  /* Trading Colors */
+  --binance-green: #10B981;
+  --binance-green-bg: rgba(16, 185, 129, 0.12);
+  --binance-green-border: rgba(16, 185, 129, 0.3);
+  --binance-red: #EF4444;
+  --binance-red-bg: rgba(239, 68, 68, 0.12);
+  --binance-red-border: rgba(239, 68, 68, 0.3);
+  --binance-yellow: #3B82F6;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 30px rgba(59, 130, 246, 0.15);
+
+  /* Aliases for inline use — mirrors Tailwind tokens */
+  --color-bg:        #000000;
+  --color-surface:   #121826;
+  --color-card:      #1A2236;
+  --color-border:    #2A344A;
+  --color-border-2:  #374151;
+  --color-primary:   #3B82F6;
+  --color-primary-2: #2563EB;
+  --color-primary-3: #60A5FA;
+  --color-accent:    #22D3EE;
+  --color-success:   #10B981;
+  --color-danger:    #EF4444;
+  --color-warning:   #F59E0B;
+  --color-text:      #E5E7EB;
+  --color-muted:     #9CA3AF;
+  --color-dim:       #6B7280;
+  --color-disabled:  #4B5563;
+  /* Agent / AI chat specific */
+  --color-agent-bg:    #4c4c62;
+  --color-agent-bg-2:  #6c6c82;
+  --color-agent-bg-3:  #7a7a90;
+  --color-agent-bg-4:  #8a8aa0;
+  /* Accent purples (AI model badges) */
+  --color-purple:      #a855f7;
+  --color-purple-2:    #c084fc;
+  /* Agent UI specific palette */
+  --color-agent-dark:  #0d0d15;
+  --color-agent-text:  #eaeaf0;
+  --color-agent-text-2:#d7d7e0;
+  --color-agent-text-3:#c0c0d0;
+  --color-agent-text-4:#f0f0f8;
+  --color-agent-muted: #5c5c72;
+  --color-agent-muted-2:#77778d;
+  --color-agent-muted-3:#8b8ba0;
+  --color-agent-dim:   #3c3c52;
+  --color-agent-dim-2: #4a4a62;
+  --color-agent-green: #00e5a0;
+  --color-agent-code:  #0a0a12;
+  /* Chart / indicator line colors */
+  --color-chart-ma5:   #FF6B6B;
+  --color-chart-ma10:  #4ECDC4;
+  --color-chart-ma20:  #FFD93D;
+  --color-chart-ma60:  #95E1D3;
+  --color-chart-ema20: #A8E6CF;
+  --color-chart-ema50: #FFD3B6;
+  --color-chart-ema200:#C084FC;
+  --color-chart-bb:    #9B59B6;
+  --color-chart-grid:  #374361;
+  --color-chart-text:  #B7BDC6;
+  --color-chart-up:    #26a69a;
+  /* AI model brand colors */
+  --color-model-deepseek: #4A90E2;
+  --color-model-qwen:     #9B59B6;
+  --color-model-claude:   #D97757;
+  --color-model-kimi:     #6366F1;
+  --color-model-gemini:   #4285F4;
+  --color-model-openai:   #10A37F;
+  --color-model-minimax:  #E45735;
+  --color-model-claw402:  #7C3AED;
+  /* Third-party brand colors */
+  --color-telegram:  #2AABEE;
+  --color-twitter:   #1DA1F2;
+  --color-github-dark: #0D1117;
+  --color-github-card: #12161C;
+  --color-exchange-hl: #50E3C2;
+  --color-claw402-green: #00E096;
+  --color-claw402-green-2: #9FE8C5;
+  /* Landing page decorative */
+  --color-terminal-red:   #FF5F56;
+  --color-terminal-amber: #FFBD2E;
+  --color-terminal-green: #27C93F;
+  --color-indicator-green: #22c55e;
+  --color-indicator-pink:  #ec4899;
+  --color-indicator-amber: #f59e0b;
+  --color-indicator-oi:    #34d399;
+  --color-indicator-fr:    #fbbf24;
+  --color-bitcoin:   #F7931A;
+  /* Exchange config hint panel */
+  --color-hint-bg:     #1a3a52;
+  --color-hint-border: #2b5278;
+  --color-hint-text:   #c9d1d9;
+  --color-hint-link:   #58a6ff;
+  --color-hint-muted:  #8b949e;
+  /* Trader colors array (chart series) */
+  --color-series-1: #60a5fa;
+  --color-series-2: #c084fc;
+  --color-series-3: #34d399;
+  --color-series-4: #fb923c;
+  --color-series-5: #f472b6;
+  --color-series-6: #fbbf24;
+  --color-series-7: #38bdf8;
+  --color-series-8: #4ade80;
+  --color-series-9: #fb7185;
+  /* Misc */
+  --color-indigo:    #6366F1;
+  --color-amber-400: #fbbf24;
+  --color-sky-400:   #38bdf8;
+  --color-footer-dim: #3C4249;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: dark;
+  color: var(--foreground);
+  background-color: var(--background);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* CRT & Tech Effects */
+.crt-overlay {
+  background:
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.tech-border {
+  position: relative;
+  background: rgba(5, 7, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tech-border::before,
+.tech-border::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--fts-gold);
+  transition: all 0.3s ease;
+}
+
+.tech-border::before {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.tech-border::after {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+.tech-border:hover::before,
+.tech-border:hover::after {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+.bg-vignette {
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.6) 80%, #000000 100%);
+  pointer-events: none;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+}
+
+.text-glow-accent {
+  text-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
+}
+
+.border-glow {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--background);
+  background-image: radial-gradient(circle at 50% 0%, #0f1729 0%, #000000 60%);
+  background-attachment: fixed;
+}
+
+/* Premium Selection Styles — blue to match brand */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+  color: #FFFFFF;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Scrollbar - Binance style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--panel-border);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--fts-gold);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 8px currentColor;
+  }
+
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 16px currentColor;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-scale {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Glass effect - Binance header style */
+.header-bar {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Sonner (toast) - Binance theme overrides */
+.sonner-toaster {
+  z-index: 9999;
+}
+
+.fts-toast {
+  background: #000000 !important;
+  border: 1px solid var(--panel-border) !important;
+  color: var(--text-primary) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border-radius: 6px !important;
+}
+
+.fts-toast .sonner-title {
+  color: var(--text-primary) !important;
+  font-weight: 700;
+}
+
+.fts-toast .sonner-description {
+  color: var(--text-secondary) !important;
+}
+
+/* Success / Error / Warning tint */
+.fts-toast[data-type='success'] {
+  background: #000000 !important;
+  border-color: var(--binance-green) !important;
+  border-left: 3px solid var(--binance-green) !important;
+}
+
+.fts-toast[data-type='success'] .sonner-title,
+.fts-toast[data-type='success'] .sonner-description {
+  color: var(--binance-green) !important;
+}
+
+.fts-toast[data-type='error'] {
+  background: #000000 !important;
+  border-color: var(--binance-red) !important;
+  border-left: 3px solid var(--binance-red) !important;
+}
+
+.fts-toast[data-type='error'] .sonner-title,
+.fts-toast[data-type='error'] .sonner-description {
+  color: var(--binance-red) !important;
+}
+
+.fts-toast[data-type='warning'],
+.fts-toast[data-type='info'] {
+  background: #000000 !important;
+  border-color: var(--binance-yellow) !important;
+  border-left: 3px solid var(--binance-yellow) !important;
+}
+
+.fts-toast[data-type='warning'] .sonner-title,
+.fts-toast[data-type='warning'] .sonner-description,
+.fts-toast[data-type='info'] .sonner-title,
+.fts-toast[data-type='info'] .sonner-description {
+  color: var(--binance-yellow) !important;
+}
+
+.fts-toast .sonner-close-button {
+  color: var(--text-secondary) !important;
+}
+
+.fts-toast .sonner-close-button:hover {
+  color: var(--text-primary) !important;
+}
+
+/* Monospace numbers — use for prices, balances, timestamps, code */
+.mono {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-profit,
+.text-loss,
+.number-up,
+.number-down {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Button styles - Binance */
+button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+}
+
+button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+/* Soft Glow for Primary Buttons */
+.btn-primary-glow {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+}
+
+.btn-primary-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Button Variants */
+.btn-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.btn-success:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.2);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #9CA3AF;
+  border: 1px solid #2A344A;
+}
+
+.btn-outline:hover:not(:disabled) {
+  border-color: #3B82F6;
+  color: #3B82F6;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* Glass Effect Utility */
+.glass {
+  background: rgba(30, 35, 41, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-panel {
+  background: rgba(30, 35, 41, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nofx-glass {
+  background: rgba(30, 35, 41, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+}
+
+/* Premium Input Styles */
+/* Premium Input Styles */
+input,
+select,
+textarea {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--panel-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--panel-border);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--fts-gold);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+  outline: none;
+  background-color: var(--panel-bg-hover);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Specific Premium Input Utility */
+.premium-input {
+  background: rgba(11, 14, 17, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+
+  /* Prevent iOS zoom */
+  @media (min-width: 768px) {
+    font-size: 0.875rem;
+  }
+
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.premium-input:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.premium-input:focus {
+  border-color: var(--fts-gold);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2), 0 0 15px rgba(59, 130, 246, 0.1);
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Binance Card - Premium Polish */
+.binance-card {
+  background: rgba(30, 35, 41, 0.4);
+  /* More transparent for glass feel */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  /* More modern radius */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  /* Ensure rounded corners contain content */
+}
+
+.dev-toast-controller {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: min(320px, 85vw);
+  background: rgba(11, 14, 17, 0.9);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 16px;
+  color: var(--text-secondary);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(16px);
+  font-size: 0.85rem;
+  z-index: 9999;
+}
+
+.dev-toast-controller__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.dev-toast-controller__header small {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+}
+
+.dev-toast-controller__content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dev-toast-controller__label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.dev-toast-controller__label select,
+.dev-toast-controller__label input {
+  width: 100%;
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  background: var(--panel-bg);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.dev-toast-controller__actions {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.dev-toast-controller__actions button {
+  flex: 1;
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 8px 10px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+
+.dev-toast-controller__actions button:first-child {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3B82F6;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.dev-toast-controller__actions button:last-child {
+  background: rgba(132, 142, 156, 0.15);
+  color: var(--text-secondary);
+  border: 1px solid var(--panel-border);
+}
+
+.dev-toast-controller__actions button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.dev-custom-toast {
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3B82F6, #2563EB);
+  color: #fff;
+  font-weight: 600;
+}
+
+.dev-custom-title {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.dev-custom-body {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.binance-card:hover {
+  border-color: var(--panel-border-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  background: var(--panel-bg-hover);
+}
+
+.binance-card-no-hover {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.binance-gradient {
+  background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
+}
+
+.binance-gradient-subtle {
+  background: linear-gradient(135deg,
+      rgba(59, 130, 246, 0.15) 0%,
+      rgba(96, 165, 250, 0.05) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.binance-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Status colors */
+.text-profit {
+  color: var(--binance-green);
+  font-weight: 700;
+}
+
+.text-loss {
+  color: var(--binance-red);
+  font-weight: 700;
+}
+
+.bg-profit {
+  background-color: var(--binance-green-bg);
+  color: var(--binance-green);
+  border: 1px solid var(--binance-green-border);
+}
+
+.bg-loss {
+  background-color: var(--binance-red-bg);
+  color: var(--binance-red);
+  border: 1px solid var(--binance-red-border);
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: var(--panel-bg);
+  background-image: linear-gradient(90deg,
+      transparent,
+      rgba(59, 130, 246, 0.05),
+      transparent);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+/* Binance button variants */
+.btn-binance {
+  background: var(--fts-gold);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  padding: 0.625rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+}
+
+.btn-binance:hover {
+  background: #60A5FA;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-binance:active {
+  background: #2563EB;
+  transform: translateY(0);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #3B82F6;
+  border: 1.5px solid #3B82F6;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.btn-outline:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: #60A5FA;
+}
+
+/* Table styles - Binance */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 0;
+}
+
+td {
+  color: var(--text-primary);
+  padding: 0.75rem 0;
+}
+
+tr {
+  border-bottom: 1px solid var(--panel-border);
+  transition: background 0.2s ease;
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+tr:hover {
+  background: rgba(59, 130, 246, 0.03);
+}
+
+/* Badge/Chip styles */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+.badge-yellow {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #3B82F6;
+}
+
+.badge-green {
+  background: var(--binance-green-bg);
+  border-color: var(--binance-green-border);
+  color: var(--binance-green);
+}
+
+.badge-red {
+  background: var(--binance-red-bg);
+  border-color: var(--binance-red-border);
+  color: var(--binance-red);
+}
+
+/* Number formatting */
+.number-up {
+  color: var(--binance-green);
+}
+
+.number-down {
+  color: var(--binance-red);
+}
+
+/* Scrollbar Hiding for sleek horizontal scrolls */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Linear Fade Mask for Scrollable Areas */
+.mask-linear-fade {
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--panel-border);
+  margin: 1rem 0;
+}
+
+/* Tooltip style */
+.tooltip {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 0.75rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 2px solid var(--panel-border);
+  border-top-color: var(--fts-gold);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Stat card enhancements */
+.stat-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg,
+      transparent,
+      var(--fts-gold),
+      transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+.stat-card:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Chart container */
+.chart-container {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .binance-card {
+    padding: 1rem;
+  }
+
+  .stat-card {
+    padding: 1rem;
+  }
+}
+
+/* Holographic Character Effects - Premium Polish */
+@keyframes holo-shift {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) contrast(1);
+  }
+
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(15deg) contrast(1.1);
+  }
+
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) contrast(1);
+  }
+}
+
+/* Holographic overlay */
+.holo-overlay {
+  background:
+    url('https://grainy-gradients.vercel.app/noise.svg'),
+    conic-gradient(from 0deg at 50% 50%,
+      rgba(59, 130, 246, 0.1) 0deg,
+      rgba(34, 211, 238, 0.1) 120deg,
+      rgba(59, 130, 246, 0.1) 240deg,
+      rgba(59, 130, 246, 0.1) 360deg);
+  mix-blend-mode: overlay;
+  background-blend-mode: overlay, normal;
+}

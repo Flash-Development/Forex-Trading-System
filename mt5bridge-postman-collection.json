@@ -1,0 +1,406 @@
+{
+  "info": {
+    "name": "MT5 Bridge API",
+    "description": "Postman collection for testing MT5 Bridge API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "router_url",
+      "value": "http://localhost:8001",
+      "type": "string"
+    },
+    {
+      "key": "account_id",
+      "value": "account1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Router Endpoints",
+      "item": [
+        {
+          "name": "List Accounts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts",
+              "host": ["{{router_url}}"],
+              "path": ["accounts"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Account Endpoints",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/health",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "health"]
+            }
+          }
+        },
+        {
+          "name": "Get Balance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/balance",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "balance"]
+            }
+          }
+        },
+        {
+          "name": "Get Positions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/positions",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "positions"]
+            }
+          }
+        },
+        {
+          "name": "Get Trade History",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/history?hours=24&limit=200",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "history"],
+              "query": [
+                {
+                  "key": "hours",
+                  "value": "24"
+                },
+                {
+                  "key": "limit",
+                  "value": "200"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Order Management",
+      "item": [
+        {
+          "name": "Open Long Position",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"EURUSD\",\n  \"action\": \"open_long\",\n  \"usd_amount\": 1000,\n  \"leverage\": 1,\n  \"sl\": 0.0,\n  \"tp\": 0.0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/order",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "order"]
+            }
+          }
+        },
+        {
+          "name": "Open Short Position",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"EURUSD\",\n  \"action\": \"open_short\",\n  \"usd_amount\": 1000,\n  \"leverage\": 1,\n  \"sl\": 0.0,\n  \"tp\": 0.0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/order",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "order"]
+            }
+          }
+        },
+        {
+          "name": "Close Long Position",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"EURUSD\",\n  \"action\": \"close_long\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/order",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "order"]
+            }
+          }
+        },
+        {
+          "name": "Close Short Position",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"EURUSD\",\n  \"action\": \"close_short\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/order",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "order"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Stop Loss & Take Profit",
+      "item": [
+        {
+          "name": "Set Stop Loss",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"EURUSD\",\n  \"position_side\": \"LONG\",\n  \"quantity\": 0.1,\n  \"price\": 1.0850\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/stop_loss",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "stop_loss"]
+            }
+          }
+        },
+        {
+          "name": "Set Take Profit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"EURUSD\",\n  \"position_side\": \"LONG\",\n  \"quantity\": 0.1,\n  \"price\": 1.0950\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/take_profit",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "take_profit"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get Open Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/orders/EURUSD",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "orders", "EURUSD"]
+            }
+          }
+        },
+        {
+          "name": "Cancel All Orders",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/orders/EURUSD",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "orders", "EURUSD"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Market Data",
+      "item": [
+        {
+          "name": "Get Price",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/price/EURUSD",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "price", "EURUSD"]
+            }
+          }
+        },
+        {
+          "name": "Get Klines",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/accounts/{{account_id}}/klines/EURUSD?interval=5m&limit=100",
+              "host": ["{{router_url}}"],
+              "path": ["accounts", "{{account_id}}", "klines", "EURUSD"],
+              "query": [
+                {
+                  "key": "interval",
+                  "value": "5m"
+                },
+                {
+                  "key": "limit",
+                  "value": "100"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Legacy Single Account Mode",
+      "item": [
+        {
+          "name": "Health (Legacy)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/health",
+              "host": ["{{router_url}}"],
+              "path": ["health"]
+            },
+            "description": "Only works when single account is configured"
+          }
+        },
+        {
+          "name": "Balance (Legacy)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/balance",
+              "host": ["{{router_url}}"],
+              "path": ["balance"]
+            },
+            "description": "Only works when single account is configured"
+          }
+        },
+        {
+          "name": "Positions (Legacy)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{router_url}}/positions",
+              "host": ["{{router_url}}"],
+              "path": ["positions"]
+            },
+            "description": "Only works when single account is configured"
+          }
+        },
+        {
+          "name": "Order (Legacy)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"symbol\": \"EURUSD\",\n  \"action\": \"open_long\",\n  \"usd_amount\": 1000,\n  \"leverage\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{router_url}}/order",
+              "host": ["{{router_url}}"],
+              "path": ["order"]
+            },
+            "description": "Only works when single account is configured"
+          }
+        }
+      ]
+    }
+  ]
+}

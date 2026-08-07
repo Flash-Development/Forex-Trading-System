@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Background circle -->
+  <circle cx="16" cy="16" r="15" fill="#05070A" stroke="#F0B90B" stroke-width="1.5"/>
+  <!-- Lightning bolt (Flash) -->
+  <path d="M18.5 4L9 18h7.5L13.5 28L23 14h-7.5L18.5 4Z" fill="#F0B90B"/>
+</svg>

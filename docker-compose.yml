@@ -1,0 +1,53 @@
+services:
+  # Backend service
+  fts:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.backend
+    container_name: fts-trading
+    restart: unless-stopped
+    stop_grace_period: 30s
+    ports:
+      - "${FTS_BACKEND_PORT:-8080}:8080"
+      - "6060:6060"
+    volumes:
+      - ./.env:/app/.env
+      - ./data:/app/data
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - .env
+    environment:
+      - TZ=${TZ:-Asia/Shanghai}
+      - AI_MAX_TOKENS=8000
+    networks:
+      - fts-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Frontend service
+  fts-frontend:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.frontend
+    container_name: fts-frontend
+    restart: unless-stopped
+    ports:
+      - "${FTS_FRONTEND_PORT:-3000}:80"
+    networks:
+      - fts-network
+    depends_on:
+      - fts
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+networks:
+  fts-network:
+    driver: bridge

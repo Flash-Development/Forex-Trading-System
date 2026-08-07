@@ -1,0 +1,16 @@
+[
+  {
+    "id": "FundedNext",
+    "login": 33729375,
+    "password": "mndKZ12##",
+    "server": "FundedNext-Server3",
+    "terminal_path": "C:\\Program Files\\FundedNext MT5 Terminal\\terminal64.exe"
+  },
+  {
+    "id": "FTMO",
+    "login": 1513254950,
+    "password": "q2ri4w*fJzui$?",
+    "server": "FTMO-Demo",
+    "terminal_path": "C:\\Program Files\\FTMO Global Markets MT5 Terminal\\terminal64.exe"
+  }
+]

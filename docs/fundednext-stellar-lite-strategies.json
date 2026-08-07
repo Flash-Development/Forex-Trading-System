@@ -1,0 +1,410 @@
+{
+  "_meta": {
+    "title": "FundedNext Stellar Lite — Proven Challenge Strategies",
+    "version": "2.0.0",
+    "updated": "2026-06-22"
+  },
+
+  "challenge_rules": {
+    "model": "Stellar Lite (2-Phase CFD)",
+    "phase_1": { "profit_target": "8%", "daily_loss_limit": "4%", "max_total_loss": "8%", "min_trading_days": 5, "time_limit": "None" },
+    "phase_2": { "profit_target": "4%", "daily_loss_limit": "4%", "max_total_loss": "8%", "min_trading_days": 5, "time_limit": "None" },
+    "funded_account": { "profit_target": "None", "reward_share": "80% initial, 90% after scale-up", "first_payout": "After 21 days", "subsequent_payouts": "Every 14 days" },
+    "prohibited": ["Grid trading", "Martingale / averaging down", "Latency arbitrage", "Tick scalping / HFT", "Cross-account hedging", "Copy trading between different traders", "News-only exploitation strategies"],
+    "allowed": ["EAs and custom indicators (must comply with rules)", "Swing trading", "Intraday trend following", "Session-based strategies", "Multi-pair trading"]
+  },
+
+  "risk_management_framework": {
+    "risk_per_trade_pct": 0.25,
+    "max_daily_loss_pct": 1.0,
+    "max_concurrent_positions": 2,
+    "min_risk_reward_ratio": 2.0,
+    "stop_loss_method": "Structure-based ONLY — placed beyond the nearest swing high/low or key S/R on the entry timeframe. Never fixed-pip or ATR-only.",
+    "take_profit_method": "Structure-based ONLY — placed just before the nearest opposing S/R level, prior session extreme, or major EMA. Never fixed-pip or ATR-only.",
+    "daily_rules": [
+      "Stop all trading when daily P&L hits -1%",
+      "Stop all trading when daily profit reaches +0.75%",
+      "Maximum 2 trades per day",
+      "After a stopped-out trade: 1-hour cooldown before next entry"
+    ],
+    "sl_placement": [
+      "Longs: 3-5 pip buffer below the most recent significant swing low on the entry timeframe",
+      "Shorts: 3-5 pip buffer above the most recent significant swing high on the entry timeframe",
+      "If structural SL distance exceeds 30 pips on majors or 45 pips on XAUUSD: skip the trade — structure is too wide",
+      "Never move SL against the trade. Only trail to breakeven once +1R is reached."
+    ],
+    "tp_placement": [
+      "Longs: 3-5 pips below the nearest 1H/4H resistance that price must work through",
+      "Shorts: 3-5 pips above the nearest 1H/4H support that price must work through",
+      "TP must be at least 2x the SL distance. If no clean structural target exists at 2R+, skip the trade.",
+      "Preferred split: close 60% at TP1 (first structural target), trail the remaining 40% behind new swing structure"
+    ]
+  },
+
+  "strategies": [
+    {
+      "id": "S1",
+      "name": "London Breakout Trend Follow",
+      "style": "Intraday Trend",
+      "difficulty": "Beginner",
+      "estimated_win_rate": "60-68%",
+      "typical_rr": "2:1 to 3:1",
+      "max_trades_per_day": 2,
+      "phase_suitability": ["phase_1", "phase_2", "funded"],
+      "recommended_pairs": ["EURUSD", "GBPUSD", "USDJPY", "GBPJPY"],
+      "avoid_pairs": ["Exotics — wide spreads destroy structure-based R:R"],
+
+      "role_definition": "You are a disciplined intraday breakout trader specialising in the London session open. You exploit the surge of institutional flow when London opens (07:00 UTC), capturing momentum after the Asian range is clearly broken and retested. Your stop is placed behind the Asian range extreme — the structural point that invalidates the breakout thesis. Your target is the next visible 1H resistance or support beyond the breakout. You never chase the initial move and never enter without a confirmed retest. Capital preservation is always the priority.",
+
+      "timeframes": {
+        "bias": "4H — trend direction and dominant S/R zones",
+        "structure": "1H — next resistance/support for TP placement",
+        "entry": "15M — breakout close and retest confirmation"
+      },
+
+      "trading_frequency": "1-2 trades per day. Active window: London open 07:00-10:00 UTC and London/NY overlap 12:00-16:00 UTC. Daily hard stops: -1% DD or +0.75% profit. One-hour cooldown after any stopped-out trade.",
+
+      "entry_standards": {
+        "setup": "Asian range (00:00-07:00 UTC) breakout confirmed by a 15M candle close outside the range, followed by a retest of the broken level",
+        "long_conditions": [
+          "4H trend bullish: price above EMA50, EMA20 > EMA50",
+          "15M candle closes above the Asian session high",
+          "Price pulls back and retests the broken Asian high as support",
+          "MACD histogram positive on 15M at the retest candle",
+          "RSI(14) between 45-68 on 15M — momentum present, not overbought"
+        ],
+        "short_conditions": [
+          "4H trend bearish: price below EMA50, EMA20 < EMA50",
+          "15M candle closes below the Asian session low",
+          "Price retests the broken Asian low as resistance",
+          "MACD histogram negative on 15M at the retest",
+          "RSI(14) between 32-55 on 15M"
+        ],
+        "skip_if": [
+          "Asian range is wider than 40 pips — structural SL becomes oversized",
+          "No clear 1H S/R level exists at 2R+ distance for TP",
+          "High-impact news within 1 hour of entry",
+          "4H and 15M directions conflict",
+          "Spread exceeds 2 pips at entry time"
+        ]
+      },
+
+      "decision_process": [
+        "07:00 UTC: mark the Asian high and low precisely on the 15M chart",
+        "On 1H, mark the nearest resistance above (longs) or support below (shorts) — this is your TP zone",
+        "Wait for a 15M candle CLOSE above the Asian high or below the Asian low — do not enter on the breakout candle",
+        "Wait for the retest of the broken level before entering",
+        "SL: 3-5 pips below the Asian low for longs, above the Asian high for shorts — this is the structural invalidation point",
+        "TP: the 1H resistance/support level identified earlier, 3-5 pips before the level. Confirm TP >= 2x SL distance. If not, skip.",
+        "Size so that SL distance = 0.25% of account equity",
+        "TP1: close 60% at the structural target. Trail the remaining 40% behind new swing structure.",
+        "Hard exit: any open trade at 16:00 UTC that is not in profit gets closed at market"
+      ],
+
+      "indicators": { "EMA": [20, 50, 200], "MACD": true, "RSI": [14], "ATR": [14], "volume": true }
+    },
+
+    {
+      "id": "S2",
+      "name": "Multi-Timeframe EMA Trend Rider",
+      "style": "Swing / Intraday Trend",
+      "difficulty": "Intermediate",
+      "estimated_win_rate": "62-70%",
+      "typical_rr": "2.5:1 to 4:1",
+      "max_trades_per_day": 2,
+      "phase_suitability": ["phase_1", "phase_2", "funded"],
+      "recommended_pairs": ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD", "XAUUSD"],
+      "avoid_pairs": ["Any pair with a flat or tangled 4H EMA stack"],
+
+      "role_definition": "You are an institutional-grade multi-timeframe trend trader with 15 years of live market experience. You enter pullbacks in the direction of the dominant 4H trend, at levels where the market has already demonstrated structural support or resistance. Your stop goes behind the swing low or high that anchors the pullback — the structural point that proves the pullback is over. Your target sits at the next opposing structural level on 1H. You never average down, never trade against a clear EMA stack, and treat every stopped trade as a valid signal that your thesis was wrong. Patience is your edge.",
+
+      "timeframes": {
+        "bias": "4H — EMA stack. If all three EMAs are not clearly aligned, no trade.",
+        "structure": "1H — pullback zone, swing high/low for SL, next S/R for TP",
+        "entry": "15M — trigger candle at the pullback zone"
+      },
+
+      "trading_frequency": "1-2 trades per day. London 07:00-16:00 UTC and NY 12:00-21:00 UTC only. Daily hard stops: -1% DD or +0.75% profit. 1-hour cooldown after a loss.",
+
+      "entry_standards": {
+        "long_conditions": [
+          "4H: EMA20 > EMA50 > EMA200, price above EMA20 — full bullish stack",
+          "1H: price pulls back to EMA20, EMA50, or a prior swing high turned support",
+          "1H RSI(14) resets to 40-55 during the pullback",
+          "15M: bullish engulfing or pin bar forms at the pullback zone",
+          "15M MACD histogram crosses from negative to positive",
+          "15M RSI(7) > 45 and rising"
+        ],
+        "short_conditions": [
+          "4H: EMA20 < EMA50 < EMA200, price below EMA20 — full bearish stack",
+          "1H: price rallies to EMA20, EMA50, or a prior swing low turned resistance",
+          "1H RSI(14) resets to 45-60 during the rally",
+          "15M: bearish engulfing or shooting star at the rally zone",
+          "15M MACD histogram crosses from positive to negative",
+          "15M RSI(7) < 55 and falling"
+        ],
+        "skip_if": [
+          "4H EMAs entangled or price between EMA20 and EMA50",
+          "No clear opposing S/R at 2R+ distance for TP placement",
+          "High-impact news within 30 minutes",
+          "Friday after 18:00 UTC — weekend gap risk",
+          "Previous trade was stopped out — wait 1 hour minimum"
+        ]
+      },
+
+      "decision_process": [
+        "Step 1: Check 4H EMA stack — all three clearly aligned? If not, no trade.",
+        "Step 2: On 1H, identify the pullback zone (EMA or prior structure) and the next opposing S/R for TP.",
+        "Step 3: Set an alert at the pullback zone. Wait — do not watch.",
+        "Step 4: Alert fires — switch to 15M. Wait for the trigger candle to CLOSE.",
+        "Step 5: Confirm MACD cross and RSI(7) on 15M.",
+        "Step 6 — SL: below the lowest 15M candle low in the pullback (longs) or above the highest high (shorts). Add 3-5 pip buffer. If this distance exceeds 30 pips on majors, skip.",
+        "Step 7 — TP: the next 1H resistance (longs) or support (shorts), 3-5 pips before the level. Confirm TP >= 2x SL. If not, skip.",
+        "Step 8: Size so SL = 0.25% account risk.",
+        "Step 9: TP1 close 60%. Trail the remaining 40% behind new 15M swing structure.",
+        "Step 10: Two trades taken or -1% DD reached — done for the day."
+      ],
+
+      "indicators": { "EMA": [20, 50, 200], "MACD": true, "RSI": [7, 14], "ATR": [14], "volume": true }
+    },
+
+    {
+      "id": "S3",
+      "name": "NY Session Kill Zone Reversal",
+      "style": "Intraday Reversal",
+      "difficulty": "Intermediate",
+      "estimated_win_rate": "58-65%",
+      "typical_rr": "3:1 to 5:1",
+      "max_trades_per_day": 1,
+      "phase_suitability": ["phase_1", "phase_2", "funded"],
+      "recommended_pairs": ["EURUSD", "GBPUSD", "USDCAD", "USDJPY"],
+      "avoid_pairs": ["XAUUSD — sweep wicks too large for tight structural stops", "Exotics"],
+
+      "role_definition": "You are a precision reversal trader hunting institutional liquidity grabs in the New York kill zone (12:00-15:00 UTC). Institutions sweep retail stop clusters above obvious equal highs or below obvious equal lows before reversing hard. The sweep wick tip is your structural SL anchor — your stop sits just beyond it. Your TP targets the origin of the sweep move, typically the last consolidation zone before the push. Because you enter at the extremity of a fake-out and target the reversion to structure, R:R is naturally 3:1 or better. One clean setup per day is sufficient.",
+
+      "timeframes": {
+        "bias": "4H — overall directional bias and major S/R",
+        "structure": "1H — liquidity pools (equal highs/lows, prior session extremes)",
+        "entry": "15M — sweep confirmation close and entry"
+      },
+
+      "trading_frequency": "Maximum 1 trade per day, strictly 12:00-15:00 UTC only. If no clean sweep forms by 15:00 UTC, log 'no setup' and close. Daily hard stop: -1% DD.",
+
+      "entry_standards": {
+        "long_conditions": [
+          "4H bias bullish: price above 4H EMA50 or at a major 4H support zone",
+          "1H shows clearly visible equal lows or a prior significant low as a liquidity target",
+          "12:00-15:00 UTC: price sweeps aggressively below that level with a wick",
+          "The sweeping 15M candle CLOSES back above the swept level — this confirms the fake-out",
+          "15M RSI(14) bullish divergence or crosses above 40 on the close-back candle",
+          "15M MACD turns positive within 1-2 candles of the sweep"
+        ],
+        "short_conditions": [
+          "4H bias bearish: price below 4H EMA50 or at a major 4H resistance zone",
+          "1H shows clearly visible equal highs or a prior significant high as a liquidity target",
+          "12:00-15:00 UTC: price sweeps above that level with a wick",
+          "The sweeping 15M candle closes back below the swept level",
+          "15M RSI(14) bearish divergence or crosses below 60",
+          "15M MACD turns negative within 1-2 candles"
+        ],
+        "skip_if": [
+          "No clear equal highs/lows or prior session extreme visible on 1H — never force a level",
+          "Sweep wick is less than 7 pips beyond the level — not a genuine institutional sweep",
+          "High-impact news release caused the move — news spikes are not structure sweeps",
+          "4H trend is strongly against the reversal direction",
+          "After 15:00 UTC — kill zone is closed"
+        ]
+      },
+
+      "decision_process": [
+        "11:45 UTC: on 1H, mark the Asian high/low and prior London session high/low",
+        "Identify which level has the most obvious stop cluster — equal highs/lows are the strongest signals",
+        "12:00-15:00 UTC: watch for an aggressive price wick through that level",
+        "Sweep confirmed: wick beyond the level AND 15M candle CLOSES back inside",
+        "SL: 3-5 pips beyond the TIP of the sweep wick — the structural extreme of the fake-out",
+        "TP: the 1H consolidation zone that existed before the sweep push — where price came from. This is typically 3-5x the SL distance. Place TP 3-5 pips before the near edge of that zone.",
+        "Confirm TP >= 2x SL. If not, skip.",
+        "Size so SL = 0.25% account risk.",
+        "TP1: close 60% at the consolidation zone origin. Trail the remaining 40% behind new swing structure.",
+        "If no setup by 15:00 UTC: log 'no trade today' and move on."
+      ],
+
+      "indicators": { "EMA": [20, 50], "MACD": true, "RSI": [14], "ATR": [14], "volume": true }
+    },
+
+    {
+      "id": "S4",
+      "name": "XAUUSD Trend Momentum Swing",
+      "style": "Swing / Intraday Trend",
+      "difficulty": "Intermediate",
+      "estimated_win_rate": "60-67%",
+      "typical_rr": "2:1 to 3.5:1",
+      "max_trades_per_day": 1,
+      "phase_suitability": ["phase_1", "phase_2", "funded"],
+      "recommended_pairs": ["XAUUSD"],
+      "note": "Gold structural swing lows/highs are often 20-40 pips wide. A 0.25% risk allocation will automatically produce a small lot size — that is correct. Never widen the stop to fit a larger position.",
+
+      "role_definition": "You are a specialist XAUUSD swing trader exploiting gold's strong trending behaviour during macro and USD-driven moves. Gold reliably returns to 4H EMA levels and 1H structural S/R during trend pullbacks before continuing. Your stop goes behind the most recent 1H swing low or high — the structural level that would prove the pullback has turned into a full reversal. Your target is the next significant 1H resistance or support above/below current price. You never trade gold in the Asian session and always flatten positions before major US data events (CPI, NFP, FOMC).",
+
+      "timeframes": {
+        "bias": "4H — EMA stack and macro trend direction",
+        "structure": "1H — pullback zones, swing highs/lows as SL anchors, S/R levels as TP targets",
+        "entry": "15M — trigger candle confirmation at the pullback zone"
+      },
+
+      "trading_frequency": "1 trade per day maximum. London open 07:00-10:00 UTC and NY open 12:00-16:00 UTC only. No trades on Fridays after 16:00 UTC. Daily hard stop: -1% DD.",
+
+      "entry_standards": {
+        "long_conditions": [
+          "4H: EMA20 > EMA50 > EMA200, price above EMA20 — confirmed uptrend",
+          "1H: pullback to a prior 1H swing high (now support), EMA20, or EMA50",
+          "1H RSI(14) reset to 40-55 during the pullback",
+          "15M: bullish engulfing or strong pin bar at the pullback zone",
+          "15M MACD histogram turns positive",
+          "15M RSI(7) > 45"
+        ],
+        "short_conditions": [
+          "4H: EMA20 < EMA50 < EMA200, price below EMA20 — confirmed downtrend",
+          "1H: rally to a prior 1H swing low (now resistance), EMA20, or EMA50",
+          "1H RSI(14) reset to 45-60 during the rally",
+          "15M: bearish engulfing or shooting star at the rally zone",
+          "15M MACD histogram turns negative",
+          "15M RSI(7) < 55"
+        ],
+        "skip_if": [
+          "US CPI, NFP, or FOMC within 2 hours of intended entry",
+          "4H EMAs flat or entangled — gold is ranging",
+          "Structural SL (below 1H swing low) requires a stop wider than 45 pips — structure too loose",
+          "Broker spread on XAUUSD exceeds $0.50",
+          "Friday after 16:00 UTC — weekend gap risk"
+        ]
+      },
+
+      "decision_process": [
+        "Step 1: Confirm 4H EMA stack — all three aligned and clear?",
+        "Step 2: On 1H, identify the most recent swing high/low that created the pullback — this is both the zone to enter and the SL anchor.",
+        "Step 3: Identify the next opposing 1H resistance (longs) or support (shorts) for TP.",
+        "Step 4: Set alert when price approaches the pullback zone. Wait.",
+        "Step 5: At the zone, check 15M for trigger candle + MACD cross + RSI(7).",
+        "Step 6 — SL: 5 pips below the 1H swing low (longs) or above the 1H swing high (shorts). If > 45 pips, skip.",
+        "Step 7 — TP: 5 pips before the 1H resistance (longs) or support (shorts). Confirm TP >= 2x SL. If not, skip.",
+        "Step 8: Size so SL = 0.25% account risk.",
+        "Step 9: TP1 close 60% at the structural target. Trail the remaining 40% behind new 15M swing structure.",
+        "Step 10: At -1% daily DD, close all gold positions immediately."
+      ],
+
+      "indicators": { "EMA": [20, 50, 200], "MACD": true, "RSI": [7, 14], "ATR": [14], "volume": false }
+    },
+
+    {
+      "id": "S5",
+      "name": "Conservative Slow Grind (Phase 2 / Funded Focus)",
+      "style": "Swing — Low Frequency",
+      "difficulty": "Beginner",
+      "estimated_win_rate": "65-72%",
+      "typical_rr": "2:1 to 3:1",
+      "max_trades_per_day": 1,
+      "phase_suitability": ["phase_2", "funded"],
+      "recommended_pairs": ["EURUSD", "GBPUSD", "USDJPY", "AUDUSD"],
+      "note": "Phase 2 needs 4%. At 0.25% risk and 2:1 structure R:R, 8 winning trades pass the phase. You can lose 4 trades on any given day before hitting the -1% daily cap. Consistency is the only goal.",
+
+      "role_definition": "You are a conservative institutional swing trader whose only objective is protecting the account while grinding profit at a steady pace. You enter once per day at most, only on 1H candle confirmation against a clearly defined structural level. Your stop goes behind the 1H swing low or high that anchors the pullback. Your target is the next 1H structural resistance or support. A 2:1 structure R:R on a clean, unambiguous setup is the entire strategy. You never take borderline setups, never trade twice in a day, and treat a stopped-out trade as confirmation that your discipline is working — not as something to recover from.",
+
+      "timeframes": {
+        "bias": "4H — trend must be clear and unambiguous. One moment of doubt = no trade.",
+        "structure": "1H — pullback zone as entry area, swing low/high as SL anchor, next S/R as TP",
+        "entry": "1H — enter on 1H candle CLOSE confirmation. No 15M drilling needed."
+      },
+
+      "trading_frequency": "Maximum 1 trade per day. Daily hard stops: -1% DD or +0.75% profit. After any loss: no trades the following calendar day. Weekly self-limit: -2% drawdown.",
+
+      "entry_standards": {
+        "long_conditions": [
+          "4H: EMA20 > EMA50, price cleanly above both — zero ambiguity",
+          "4H RSI(14) between 45-65 — trend running, not extended",
+          "1H: clean pullback to the 1H EMA50 or a clearly defined prior resistance-turned-support",
+          "1H candle CLOSES bullish at the zone — engulfing body or pin bar with close above midpoint",
+          "1H MACD histogram crosses from negative to positive on or after the entry candle"
+        ],
+        "short_conditions": [
+          "4H: EMA20 < EMA50, price cleanly below both — zero ambiguity",
+          "4H RSI(14) between 35-55",
+          "1H: clean rally to the 1H EMA50 or a clearly defined prior support-turned-resistance",
+          "1H candle CLOSES bearish at the zone",
+          "1H MACD histogram crosses from positive to negative"
+        ],
+        "skip_if": [
+          "Any ambiguity in the 4H trend",
+          "The 1H pullback zone is unclear — price is drifting rather than pulling back to a defined level",
+          "No 1H S/R level exists at 2R+ distance for TP",
+          "Already traded today",
+          "Within 0.25% of the -1% daily DD limit",
+          "Monday within 1 hour of market open — gap fills distort structure"
+        ]
+      },
+
+      "decision_process": [
+        "Before London open: review 4H — is the trend unambiguous? Identify today's pullback zone and TP target in advance.",
+        "Set a price alert at the 1H zone. Do not watch the screen until the alert fires.",
+        "Alert fires: switch to 1H. Wait for the current 1H candle to fully CLOSE.",
+        "Is it a clean confirmation candle? If yes, proceed. If borderline, skip.",
+        "SL: below the lowest low of the pullback structure on 1H (longs) or above the highest high (shorts). Add 3-5 pip buffer. If > 30 pips on majors, skip.",
+        "TP: the next visible 1H resistance (longs) or support (shorts), 3-5 pips before the level. Confirm TP >= 2x SL. If not, skip.",
+        "Size so SL = 0.25% account risk.",
+        "Enter on the open of the next 1H candle. Place SL and TP in the platform. Walk away.",
+        "If TP hit: log it, done for the day.",
+        "If SL hit: log it, done for the day. No second attempt, no recovery trade."
+      ],
+
+      "indicators": { "EMA": [20, 50, 200], "MACD": true, "RSI": [14], "ATR": [14], "volume": false }
+    }
+  ],
+
+  "pair_selection_guide": {
+    "tier_1": {
+      "pairs": ["EURUSD", "GBPUSD", "USDJPY"],
+      "reason": "Highest liquidity, tightest spreads, clearest structural S/R. Structure-based SL/TP is most reliable on these pairs."
+    },
+    "tier_2": {
+      "pairs": ["AUDUSD", "USDCAD", "XAUUSD", "GBPJPY"],
+      "reason": "Good trend behaviour. XAUUSD only with S4. GBPJPY only during London session with S1/S2. Wider structural stops are automatically handled by the 0.25% risk rule."
+    },
+    "tier_3_avoid": {
+      "pairs": ["EURGBP", "EURJPY", "Exotics (USDZAR, USDMXN, etc.)"],
+      "reason": "Choppy price action, poor structural respect, wide spreads. Structure-based SL/TP becomes unreliable and the -1% DD cap is too easily hit."
+    }
+  },
+
+  "challenge_execution_plan": {
+    "phase_1": {
+      "target": "8%",
+      "daily_goal": "0.5% (2 wins at 0.25% risk x 2:1 = 0.5%)",
+      "daily_hard_stop": "-1%",
+      "primary_strategy": "S2 (EMA Trend Rider)",
+      "secondary_strategy": "S1 (London Breakout)",
+      "math": "0.5% per day x 16 winning days = 8%. No time limit — no reason to rush."
+    },
+    "phase_2": {
+      "target": "4%",
+      "daily_goal": "0.25-0.5%",
+      "daily_hard_stop": "-1%",
+      "primary_strategy": "S5 (Conservative Slow Grind) — one trade per day only",
+      "math": "4% target / 0.5% per winning day = 8 winning days needed. With 0.25% risk, four consecutive losses = only -1% on the worst possible day.",
+      "notes": "Most failures happen in Phase 2 through overconfidence. Drop frequency, hold the same rules."
+    },
+    "minimum_trading_days": {
+      "requirement": 5,
+      "tip": "Spread over at least 7-10 calendar days. Force-trading on day 5 just to hit the minimum is a common challenge-blowing mistake."
+    }
+  },
+
+  "psychological_guidelines": [
+    "0.25% per trade: four consecutive losses = -1% daily max. A bad day is survivable. Stay mechanical.",
+    "-1% daily DD hit: close the platform immediately. The account is intact. Come back tomorrow.",
+    "Structure-based stops mean price genuinely invalidated your thesis. A stopped trade is not a mistake if the setup was clean — it is the system working.",
+    "Never widen a stop after entry. The structural level defined the thesis. If price reaches it, the thesis is wrong.",
+    "Never move TP closer to lock in less. A structural target valid at entry is valid now.",
+    "Position size stays at 0.25% regardless of how many wins or losses preceded this trade.",
+    "No time limit on the challenge is your biggest structural edge over traders who panic and overtrade."
+  ]
+}
