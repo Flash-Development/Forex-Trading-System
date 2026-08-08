@@ -33,7 +33,10 @@ export function renderInline(text: string): (string | JSX.Element)[] {
       )
     } else if (part.startsWith('**') && part.endsWith('**')) {
       result.push(
-        <strong key={i} style={{ fontWeight: 600, color: 'var(--color-agent-text-4)' }}>
+        <strong
+          key={i}
+          style={{ fontWeight: 600, color: 'var(--color-agent-text-4)' }}
+        >
           {part.slice(2, -2)}
         </strong>
       )
@@ -43,7 +46,10 @@ export function renderInline(text: string): (string | JSX.Element)[] {
       !part.startsWith('**')
     ) {
       result.push(
-        <em key={i} style={{ fontStyle: 'italic', color: 'var(--color-agent-text-2)' }}>
+        <em
+          key={i}
+          style={{ fontStyle: 'italic', color: 'var(--color-agent-text-2)' }}
+        >
           {part.slice(1, -1)}
         </em>
       )

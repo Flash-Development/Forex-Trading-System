@@ -15,5 +15,5 @@ export const BRAND_INFO = {
     x: () => OFFICIAL_LINKS.twitter,
     tg: () => OFFICIAL_LINKS.telegram,
     gh: () => OFFICIAL_LINKS.github,
-  }
+  },
 } as const

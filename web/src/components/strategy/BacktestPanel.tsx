@@ -374,8 +374,12 @@ export function BacktestPanel({
           onClick={() => setSignalMode('ema')}
           className="flex-1 py-2 text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
           style={{
-            background: signalMode === 'ema' ? 'var(--color-card)' : 'transparent',
-            color: signalMode === 'ema' ? 'var(--color-accent)' : 'var(--color-muted)',
+            background:
+              signalMode === 'ema' ? 'var(--color-card)' : 'transparent',
+            color:
+              signalMode === 'ema'
+                ? 'var(--color-accent)'
+                : 'var(--color-muted)',
           }}
         >
           <Zap className="w-3.5 h-3.5" />
@@ -385,8 +389,12 @@ export function BacktestPanel({
           onClick={() => setSignalMode('ai')}
           className="flex-1 py-2 text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
           style={{
-            background: signalMode === 'ai' ? 'var(--color-card)' : 'transparent',
-            color: signalMode === 'ai' ? 'var(--color-primary)' : 'var(--color-muted)',
+            background:
+              signalMode === 'ai' ? 'var(--color-card)' : 'transparent',
+            color:
+              signalMode === 'ai'
+                ? 'var(--color-primary)'
+                : 'var(--color-muted)',
             borderLeft: '1px solid #2A344A',
           }}
         >
@@ -401,7 +409,10 @@ export function BacktestPanel({
           className="w-3 h-3 mt-0.5 flex-shrink-0"
           style={{ color: 'var(--color-muted)' }}
         />
-        <p className="text-xs leading-relaxed" style={{ color: 'var(--color-muted)' }}>
+        <p
+          className="text-xs leading-relaxed"
+          style={{ color: 'var(--color-muted)' }}
+        >
           {signalMode === 'ema'
             ? zh
               ? 'EMA(20/50)穿越信号，快速基线测试，不使用AI'
@@ -423,7 +434,10 @@ export function BacktestPanel({
             {/* Strategy summary */}
             <div
               className="p-3 rounded-lg"
-              style={{ background: 'var(--color-card)', border: '1px solid #2A344A' }}
+              style={{
+                background: 'var(--color-card)',
+                border: '1px solid #2A344A',
+              }}
             >
               <p
                 className="text-xs font-medium mb-2"
@@ -444,7 +458,10 @@ export function BacktestPanel({
                   <span
                     key={item.label}
                     className="px-2 py-1 rounded text-xs font-mono"
-                    style={{ background: 'var(--color-bg)', color: 'var(--color-accent)' }}
+                    style={{
+                      background: 'var(--color-bg)',
+                      color: 'var(--color-accent)',
+                    }}
                   >
                     {item.label}: {item.value}
                   </span>
@@ -507,7 +524,10 @@ export function BacktestPanel({
                     color: 'var(--color-text)',
                   }}
                 />
-                <p className="text-xs mt-1" style={{ color: 'var(--color-muted)' }}>
+                <p
+                  className="text-xs mt-1"
+                  style={{ color: 'var(--color-muted)' }}
+                >
                   ~{estCalls} {zh ? '次AI调用' : 'AI calls'}
                 </p>
               </div>
@@ -605,7 +625,10 @@ export function BacktestPanel({
                   }
                   className="accent-cyan-400"
                 />
-                <span className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                <span
+                  className="text-xs"
+                  style={{ color: 'var(--color-muted)' }}
+                >
                   Monte Carlo
                 </span>
               </label>
@@ -625,8 +648,14 @@ export function BacktestPanel({
                   onClick={() => setSymbolMode(mode)}
                   className="flex-1 py-1.5 text-xs font-medium transition-colors"
                   style={{
-                    background: symbolMode === mode ? 'var(--color-border)' : 'transparent',
-                    color: symbolMode === mode ? 'var(--color-text)' : 'var(--color-muted)',
+                    background:
+                      symbolMode === mode
+                        ? 'var(--color-border)'
+                        : 'transparent',
+                    color:
+                      symbolMode === mode
+                        ? 'var(--color-text)'
+                        : 'var(--color-muted)',
                     borderRight:
                       mode === 'forex' ? '1px solid #2A344A' : 'none',
                   }}
@@ -854,7 +883,10 @@ export function BacktestPanel({
                     }
                     className="accent-cyan-400"
                   />
-                  <span className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                  <span
+                    className="text-xs"
+                    style={{ color: 'var(--color-muted)' }}
+                  >
                     {zh ? '美分账户' : 'Cent Account'}
                   </span>
                 </label>
@@ -868,7 +900,10 @@ export function BacktestPanel({
                   }
                   className="accent-cyan-400"
                 />
-                <span className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                <span
+                  className="text-xs"
+                  style={{ color: 'var(--color-muted)' }}
+                >
                   Monte Carlo
                 </span>
               </label>
@@ -878,11 +913,19 @@ export function BacktestPanel({
               <div className="flex items-center gap-1.5">
                 <Database
                   className="w-3 h-3"
-                  style={{ color: mt5BridgeUrl ? 'var(--color-success)' : 'var(--color-primary)' }}
+                  style={{
+                    color: mt5BridgeUrl
+                      ? 'var(--color-success)'
+                      : 'var(--color-primary)',
+                  }}
                 />
                 <span
                   className="text-xs"
-                  style={{ color: mt5BridgeUrl ? 'var(--color-success)' : 'var(--color-primary)' }}
+                  style={{
+                    color: mt5BridgeUrl
+                      ? 'var(--color-success)'
+                      : 'var(--color-primary)',
+                  }}
                 >
                   {mt5BridgeUrl
                     ? zh
@@ -1005,12 +1048,20 @@ function BacktestResults({
         >
           <Bot
             className="w-5 h-5 flex-shrink-0 mt-0.5"
-            style={{ color: profitable ? 'var(--color-success)' : 'var(--color-danger)' }}
+            style={{
+              color: profitable
+                ? 'var(--color-success)'
+                : 'var(--color-danger)',
+            }}
           />
           <div className="min-w-0">
             <p
               className="text-sm font-semibold"
-              style={{ color: profitable ? 'var(--color-success)' : 'var(--color-danger)' }}
+              style={{
+                color: profitable
+                  ? 'var(--color-success)'
+                  : 'var(--color-danger)',
+              }}
             >
               {zh ? 'AI策略准确率' : 'AI Strategy Accuracy'}:{' '}
               {pct(result.win_rate)}
@@ -1021,7 +1072,10 @@ function BacktestResults({
                   ? '~ Marginal'
                   : '✗ Weak'}
             </p>
-            <p className="text-xs mt-0.5" style={{ color: 'var(--color-muted)' }}>
+            <p
+              className="text-xs mt-0.5"
+              style={{ color: 'var(--color-muted)' }}
+            >
               {simResult.symbol} · {simResult.timeframe} ·{' '}
               {simResult.ai_call_count} {zh ? '次AI调用' : 'AI calls'} ·{' '}
               {simResult.total_signals} {zh ? '个信号' : 'signals'}
@@ -1115,7 +1169,11 @@ function BacktestResults({
         <StatCard
           label={zh ? '期望值' : 'Expected Value'}
           value={pct(result.expected_value_pct)}
-          color={(result.expected_value_pct ?? 0) > 0 ? 'var(--color-success)' : 'var(--color-danger)'}
+          color={
+            (result.expected_value_pct ?? 0) > 0
+              ? 'var(--color-success)'
+              : 'var(--color-danger)'
+          }
         />
       </div>
 
@@ -1127,12 +1185,20 @@ function BacktestResults({
       {/* AI decision log */}
       {simResult && (simResult.steps?.length ?? 0) > 0 && (
         <Accordion
-          icon={<Bot className="w-4 h-4" style={{ color: 'var(--color-primary)' }} />}
+          icon={
+            <Bot
+              className="w-4 h-4"
+              style={{ color: 'var(--color-primary)' }}
+            />
+          }
           label={`${zh ? 'AI 决策日志' : 'AI Decision Log'} (${simResult.steps.filter((s) => s.signal).length}/${simResult.steps.length})`}
           open={showSteps}
           onToggle={() => setShowSteps(!showSteps)}
         >
-          <div className="overflow-x-auto" style={{ background: 'var(--color-bg)' }}>
+          <div
+            className="overflow-x-auto"
+            style={{ background: 'var(--color-bg)' }}
+          >
             <table className="w-full text-xs">
               <thead>
                 <tr style={{ borderBottom: '1px solid #2A344A' }}>
@@ -1220,7 +1286,12 @@ function BacktestResults({
       {/* Monte Carlo */}
       {result.monte_carlo_result && (
         <Accordion
-          icon={<Activity className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />}
+          icon={
+            <Activity
+              className="w-4 h-4"
+              style={{ color: 'var(--color-accent)' }}
+            />
+          }
           label={`${zh ? '蒙特卡洛' : 'Monte Carlo'} (${result.monte_carlo_result.runs.toLocaleString()} ${zh ? '次' : 'runs'})`}
           open={showMC}
           onToggle={() => setShowMC(!showMC)}
@@ -1235,12 +1306,20 @@ function BacktestResults({
       {/* Trades */}
       {result.trades?.length > 0 && (
         <Accordion
-          icon={<BarChart3 className="w-4 h-4" style={{ color: 'var(--color-primary)' }} />}
+          icon={
+            <BarChart3
+              className="w-4 h-4"
+              style={{ color: 'var(--color-primary)' }}
+            />
+          }
           label={`${zh ? '交易记录' : 'Trade Log'} (${result.trades.length})`}
           open={showTrades}
           onToggle={() => setShowTrades(!showTrades)}
         >
-          <div className="overflow-x-auto" style={{ background: 'var(--color-bg)' }}>
+          <div
+            className="overflow-x-auto"
+            style={{ background: 'var(--color-bg)' }}
+          >
             <table className="w-full text-xs">
               <thead>
                 <tr style={{ borderBottom: '1px solid #2A344A' }}>
@@ -1266,13 +1345,19 @@ function BacktestResults({
               <tbody>
                 {result.trades.slice(0, 100).map((t, i) => (
                   <tr key={i} style={{ borderBottom: '1px solid #1A2236' }}>
-                    <td className="px-3 py-1.5" style={{ color: 'var(--color-muted)' }}>
+                    <td
+                      className="px-3 py-1.5"
+                      style={{ color: 'var(--color-muted)' }}
+                    >
                       {i + 1}
                     </td>
                     <td className="px-3 py-1.5">
                       <span
                         style={{
-                          color: t.side === 'long' ? 'var(--color-success)' : 'var(--color-danger)',
+                          color:
+                            t.side === 'long'
+                              ? 'var(--color-success)'
+                              : 'var(--color-danger)',
                         }}
                       >
                         {t.side === 'long' ? '▲' : '▼'} {t.side.toUpperCase()}
@@ -1292,21 +1377,36 @@ function BacktestResults({
                     </td>
                     <td
                       className="px-3 py-1.5 font-mono"
-                      style={{ color: t.pips >= 0 ? 'var(--color-success)' : 'var(--color-danger)' }}
+                      style={{
+                        color:
+                          t.pips >= 0
+                            ? 'var(--color-success)'
+                            : 'var(--color-danger)',
+                      }}
                     >
                       {t.pips >= 0 ? '+' : ''}
                       {t.pips.toFixed(1)}
                     </td>
                     <td
                       className="px-3 py-1.5 font-mono"
-                      style={{ color: t.pnl_usd >= 0 ? 'var(--color-success)' : 'var(--color-danger)' }}
+                      style={{
+                        color:
+                          t.pnl_usd >= 0
+                            ? 'var(--color-success)'
+                            : 'var(--color-danger)',
+                      }}
                     >
                       {t.pnl_usd >= 0 ? '+' : ''}
                       {usd(t.pnl_usd)}
                     </td>
                     <td
                       className="px-3 py-1.5 font-mono"
-                      style={{ color: t.pnl_pct >= 0 ? 'var(--color-success)' : 'var(--color-danger)' }}
+                      style={{
+                        color:
+                          t.pnl_pct >= 0
+                            ? 'var(--color-success)'
+                            : 'var(--color-danger)',
+                      }}
                     >
                       {t.pnl_pct >= 0 ? '+' : ''}
                       {pct(t.pnl_pct)}
@@ -1349,14 +1449,23 @@ function Accordion({
       >
         <div className="flex items-center gap-2">
           {icon}
-          <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+          <span
+            className="text-sm font-medium"
+            style={{ color: 'var(--color-text)' }}
+          >
             {label}
           </span>
         </div>
         {open ? (
-          <ChevronDown className="w-4 h-4" style={{ color: 'var(--color-muted)' }} />
+          <ChevronDown
+            className="w-4 h-4"
+            style={{ color: 'var(--color-muted)' }}
+          />
         ) : (
-          <ChevronRight className="w-4 h-4" style={{ color: 'var(--color-muted)' }} />
+          <ChevronRight
+            className="w-4 h-4"
+            style={{ color: 'var(--color-muted)' }}
+          />
         )}
       </button>
       {open && children}
@@ -1414,7 +1523,10 @@ function EquityCurveChart({
       className="p-4 rounded-lg"
       style={{ background: 'var(--color-bg)', border: '1px solid #2A344A' }}
     >
-      <p className="text-xs mb-3 font-medium" style={{ color: 'var(--color-muted)' }}>
+      <p
+        className="text-xs mb-3 font-medium"
+        style={{ color: 'var(--color-muted)' }}
+      >
         {zh ? '权益曲线' : 'Equity Curve'}
       </p>
       <svg viewBox={`0 0 ${w} ${h}`} className="w-full" style={{ height: 100 }}>
@@ -1430,7 +1542,11 @@ function EquityCurveChart({
         style={{ color: 'var(--color-muted)' }}
       >
         <span>{usd(values[0])}</span>
-        <span style={{ color: profitable ? 'var(--color-success)' : 'var(--color-danger)' }}>
+        <span
+          style={{
+            color: profitable ? 'var(--color-success)' : 'var(--color-danger)',
+          }}
+        >
           {usd(values[values.length - 1])}
         </span>
       </div>
@@ -1452,7 +1568,11 @@ function MonteCarloDisplay({
         <StatCard
           label={zh ? '中位收益' : 'Median Return'}
           value={pct(mc.median_return_pct)}
-          color={mc.median_return_pct > 0 ? 'var(--color-success)' : 'var(--color-danger)'}
+          color={
+            mc.median_return_pct > 0
+              ? 'var(--color-success)'
+              : 'var(--color-danger)'
+          }
         />
         <StatCard
           label={zh ? '5th 百分位' : '5th Pct'}
@@ -1477,7 +1597,11 @@ function MonteCarloDisplay({
         <StatCard
           label={zh ? '破产概率' : 'Ruin Prob'}
           value={pct(mc.ruin_probability)}
-          color={mc.ruin_probability < 0.05 ? 'var(--color-success)' : 'var(--color-danger)'}
+          color={
+            mc.ruin_probability < 0.05
+              ? 'var(--color-success)'
+              : 'var(--color-danger)'
+          }
         />
       </div>
       {mc.ruin_probability > 0.1 && (

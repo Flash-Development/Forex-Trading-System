@@ -141,7 +141,11 @@ function ActionCard({
           )}
           <div
             className="w-2 h-2 rounded-full"
-            style={{ background: action.success ? 'var(--color-success)' : 'var(--color-danger)' }}
+            style={{
+              background: action.success
+                ? 'var(--color-success)'
+                : 'var(--color-danger)',
+            }}
           />
         </div>
       </div>
@@ -154,7 +158,10 @@ function ActionCard({
         >
           {/* Entry Price */}
           <div className="text-center">
-            <div className="text-xs mb-1" style={{ color: 'var(--color-muted)' }}>
+            <div
+              className="text-xs mb-1"
+              style={{ color: 'var(--color-muted)' }}
+            >
               {t('entryPrice', language)}
             </div>
             <div
@@ -167,7 +174,10 @@ function ActionCard({
 
           {/* Stop Loss */}
           <div className="text-center">
-            <div className="text-xs mb-1" style={{ color: 'var(--color-danger)' }}>
+            <div
+              className="text-xs mb-1"
+              style={{ color: 'var(--color-danger)' }}
+            >
               {t('stopLoss', language)}
             </div>
             <div
@@ -177,7 +187,10 @@ function ActionCard({
               {formatPrice(action.stop_loss)}
             </div>
             {action.stop_loss && action.price && (
-              <div className="text-xs mt-0.5" style={{ color: 'var(--color-muted)' }}>
+              <div
+                className="text-xs mt-0.5"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 {calcPctChange(action.price, action.stop_loss, isLong)}
               </div>
             )}
@@ -185,7 +198,10 @@ function ActionCard({
 
           {/* Take Profit */}
           <div className="text-center">
-            <div className="text-xs mb-1" style={{ color: 'var(--color-success)' }}>
+            <div
+              className="text-xs mb-1"
+              style={{ color: 'var(--color-success)' }}
+            >
               {t('takeProfit', language)}
             </div>
             <div
@@ -195,7 +211,10 @@ function ActionCard({
               {formatPrice(action.take_profit)}
             </div>
             {action.take_profit && action.price && (
-              <div className="text-xs mt-0.5" style={{ color: 'var(--color-muted)' }}>
+              <div
+                className="text-xs mt-0.5"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 {calcPctChange(action.price, action.take_profit, isLong)}
               </div>
             )}
@@ -203,7 +222,10 @@ function ActionCard({
 
           {/* Leverage */}
           <div className="text-center">
-            <div className="text-xs mb-1" style={{ color: 'var(--color-muted)' }}>
+            <div
+              className="text-xs mb-1"
+              style={{ color: 'var(--color-muted)' }}
+            >
               {t('leverage', language)}
             </div>
             <div
@@ -231,13 +253,19 @@ function ActionCard({
               const tpDist = Math.abs(action.take_profit - action.price)
               const ratio = slDist > 0 ? tpDist / slDist : 0
               const ratioColor =
-                ratio >= 3 ? 'var(--color-success)' : ratio >= 2 ? 'var(--color-primary)' : 'var(--color-danger)'
+                ratio >= 3
+                  ? 'var(--color-success)'
+                  : ratio >= 2
+                    ? 'var(--color-primary)'
+                    : 'var(--color-danger)'
               return (
                 <>
                   <div className="flex gap-1">
                     <span style={{ color: 'var(--color-danger)' }}>1</span>
                     <span style={{ color: 'var(--color-muted)' }}>:</span>
-                    <span style={{ color: 'var(--color-success)' }}>{ratio.toFixed(1)}</span>
+                    <span style={{ color: 'var(--color-success)' }}>
+                      {ratio.toFixed(1)}
+                    </span>
                   </div>
                   <div
                     className="h-1.5 rounded-full"
@@ -264,7 +292,10 @@ function ActionCard({
       {/* Reasoning */}
       {action.reasoning && (
         <div className="mt-3 pt-3" style={{ borderTop: '1px solid #2A344A' }}>
-          <div className="text-xs line-clamp-2" style={{ color: 'var(--color-muted)' }}>
+          <div
+            className="text-xs line-clamp-2"
+            style={{ color: 'var(--color-muted)' }}
+          >
             💡 {action.reasoning}
           </div>
         </div>
@@ -391,7 +422,10 @@ export function DecisionCard({
             >
               <div className="flex items-center gap-2">
                 <span className="text-base">⚙️</span>
-                <span className="font-semibold" style={{ color: 'var(--color-primary-3)' }}>
+                <span
+                  className="font-semibold"
+                  style={{ color: 'var(--color-primary-3)' }}
+                >
                   System Prompt
                 </span>
               </div>
@@ -466,7 +500,10 @@ export function DecisionCard({
             >
               <div className="flex items-center gap-2">
                 <span className="text-base">📥</span>
-                <span className="font-semibold" style={{ color: 'var(--color-primary-3)' }}>
+                <span
+                  className="font-semibold"
+                  style={{ color: 'var(--color-primary-3)' }}
+                >
                   User Prompt
                 </span>
               </div>
@@ -541,7 +578,10 @@ export function DecisionCard({
             >
               <div className="flex items-center gap-2">
                 <span className="text-base">🧠</span>
-                <span className="font-semibold" style={{ color: 'var(--color-primary)' }}>
+                <span
+                  className="font-semibold"
+                  style={{ color: 'var(--color-primary)' }}
+                >
                   {t('aiThinking', language)}
                 </span>
               </div>

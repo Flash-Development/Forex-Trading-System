@@ -127,7 +127,10 @@ export function ModelConfigModal({
                 </svg>
               </button>
             )}
-            <h3 className="text-xl font-bold" style={{ color: 'var(--color-text)' }}>
+            <h3
+              className="text-xl font-bold"
+              style={{ color: 'var(--color-text)' }}
+            >
               {editingModelId
                 ? t('editAIModel', language)
                 : t('addAIModel', language)}
@@ -237,7 +240,10 @@ function ModelSelectionStep({
 }) {
   return (
     <div className="space-y-4">
-      <div className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+      <div
+        className="text-sm font-semibold"
+        style={{ color: 'var(--color-text)' }}
+      >
         {t('modelConfig.chooseProvider', language)}
       </div>
 
@@ -286,7 +292,10 @@ function ModelSelectionStep({
                     ↗ claw402.ai
                   </a>
                 </div>
-                <div className="text-xs mt-0.5" style={{ color: 'var(--color-muted)' }}>
+                <div
+                  className="text-xs mt-0.5"
+                  style={{ color: 'var(--color-muted)' }}
+                >
                   {t('modelConfig.payPerCall', language)}
                 </div>
               </div>
@@ -345,14 +354,20 @@ function ModelSelectionStep({
       {availableModels.some((m) => m.provider?.startsWith('blockrun')) && (
         <>
           <div className="flex items-center gap-3 pt-2">
-            <div className="flex-1 h-px" style={{ background: 'var(--color-border)' }} />
+            <div
+              className="flex-1 h-px"
+              style={{ background: 'var(--color-border)' }}
+            />
             <span
               className="text-xs font-medium px-2"
               style={{ color: 'var(--color-muted)' }}
             >
               {t('modelConfig.viaBlockrunWallet', language)}
             </span>
-            <div className="flex-1 h-px" style={{ background: 'var(--color-border)' }} />
+            <div
+              className="flex-1 h-px"
+              style={{ background: 'var(--color-border)' }}
+            />
           </div>
           <div className="grid grid-cols-2 gap-3">
             {availableModels
@@ -369,7 +384,10 @@ function ModelSelectionStep({
           </div>
         </>
       )}
-      <div className="text-xs text-center pt-2" style={{ color: 'var(--color-muted)' }}>
+      <div
+        className="text-xs text-center pt-2"
+        style={{ color: 'var(--color-muted)' }}
+      >
         {t('modelConfig.modelsConfigured', language)}
       </div>
     </div>
@@ -530,7 +548,10 @@ function Claw402ConfigForm({
           style={{ color: 'var(--color-text)' }}
         >
           Claw402{' '}
-          <span className="text-xs font-normal" style={{ color: 'var(--color-primary-3)' }}>
+          <span
+            className="text-xs font-normal"
+            style={{ color: 'var(--color-primary-3)' }}
+          >
             ↗
           </span>
         </a>
@@ -561,7 +582,10 @@ function Claw402ConfigForm({
           className="flex items-center gap-2 text-sm font-semibold"
           style={{ color: 'var(--color-text)' }}
         >
-          <Brain className="w-4 h-4" style={{ color: 'var(--color-primary-2)' }} />
+          <Brain
+            className="w-4 h-4"
+            style={{ color: 'var(--color-primary-2)' }}
+          />
           {t('modelConfig.selectAiModel', language)}
         </label>
         <div className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -577,7 +601,9 @@ function Claw402ConfigForm({
                 onClick={() => onModelNameChange(m.id)}
                 className="flex items-start gap-2 px-3 py-2.5 rounded-xl text-left transition-all hover:scale-[1.02]"
                 style={{
-                  background: isSelected ? 'rgba(37, 99, 235, 0.2)' : 'var(--color-bg)',
+                  background: isSelected
+                    ? 'rgba(37, 99, 235, 0.2)'
+                    : 'var(--color-bg)',
                   border: isSelected
                     ? '1.5px solid #2563EB'
                     : '1px solid #2A344A',
@@ -588,7 +614,11 @@ function Claw402ConfigForm({
                   <div className="flex items-center gap-1.5 min-w-0">
                     <div
                       className="text-xs font-semibold truncate"
-                      style={{ color: isSelected ? 'var(--color-primary-3)' : 'var(--color-text)' }}
+                      style={{
+                        color: isSelected
+                          ? 'var(--color-primary-3)'
+                          : 'var(--color-text)',
+                      }}
                     >
                       {m.name}
                     </div>
@@ -611,7 +641,10 @@ function Claw402ConfigForm({
                   >
                     {m.provider} · {m.desc}
                   </div>
-                  <div className="text-[10px]" style={{ color: 'var(--color-claw402-green)' }}>
+                  <div
+                    className="text-[10px]"
+                    style={{ color: 'var(--color-claw402-green)' }}
+                  >
                     ~${m.price}/call
                   </div>
                 </div>
@@ -662,7 +695,10 @@ function Claw402ConfigForm({
           <div className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
             {t('modelConfig.walletInfo', language)}
           </div>
-          <div className="text-xs space-y-1" style={{ color: 'var(--color-muted)' }}>
+          <div
+            className="text-xs space-y-1"
+            style={{ color: 'var(--color-muted)' }}
+          >
             <div className="flex items-center gap-1.5">
               <span style={{ color: 'var(--color-claw402-green)' }}>•</span>
               {t('modelConfig.exportKey', language)}
@@ -675,7 +711,10 @@ function Claw402ConfigForm({
         </div>
 
         <div className="space-y-1.5">
-          <div className="text-xs font-medium" style={{ color: 'var(--color-muted)' }}>
+          <div
+            className="text-xs font-medium"
+            style={{ color: 'var(--color-muted)' }}
+          >
             {t('modelConfig.walletPrivateKey', language)}
           </div>
           <div className="flex gap-2">
@@ -745,7 +784,10 @@ function Claw402ConfigForm({
                   ? '重要：请立即备份私钥！'
                   : 'Important: Backup your private key NOW!'}
               </div>
-              <div className="text-[11px] mb-2" style={{ color: 'var(--color-danger)' }}>
+              <div
+                className="text-[11px] mb-2"
+                style={{ color: 'var(--color-danger)' }}
+              >
                 {language === 'zh'
                   ? '这是你的钱包私钥，丢失后无法恢复，钱包里的资产将永久丢失。请复制并安全保存。'
                   : 'This is your wallet private key. If lost, it cannot be recovered and all assets will be permanently lost. Copy and save it securely.'}
@@ -753,7 +795,10 @@ function Claw402ConfigForm({
               <div className="flex items-center gap-2 mb-2">
                 <code
                   className="text-[10px] font-mono break-all select-all flex-1 p-2 rounded"
-                  style={{ background: 'var(--color-bg)', color: 'var(--color-danger)' }}
+                  style={{
+                    background: 'var(--color-bg)',
+                    color: 'var(--color-danger)',
+                  }}
                 >
                   {newWalletKey}
                 </code>
@@ -846,7 +891,10 @@ function Claw402ConfigForm({
                   }}
                 >
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[11px]" style={{ color: 'var(--color-muted)' }}>
+                    <span
+                      className="text-[11px]"
+                      style={{ color: 'var(--color-muted)' }}
+                    >
                       {t('modelConfig.walletAddress', language)}:
                     </span>
                     <button
@@ -887,7 +935,12 @@ function Claw402ConfigForm({
                   <div className="flex items-center gap-2 text-xs">
                     <span>💰</span>
                     <span
-                      style={{ color: balanceNum > 0 ? 'var(--color-claw402-green)' : 'var(--color-warning)' }}
+                      style={{
+                        color:
+                          balanceNum > 0
+                            ? 'var(--color-claw402-green)'
+                            : 'var(--color-warning)',
+                      }}
                     >
                       {t('modelConfig.usdcBalance', language)}: ${usdcBalance}
                     </span>
@@ -1011,7 +1064,10 @@ function Claw402ConfigForm({
                   <div
                     className="flex items-center gap-2 text-xs"
                     style={{
-                      color: claw402Status === 'ok' ? 'var(--color-claw402-green)' : 'var(--color-danger)',
+                      color:
+                        claw402Status === 'ok'
+                          ? 'var(--color-claw402-green)'
+                          : 'var(--color-danger)',
                     }}
                   >
                     <span>{claw402Status === 'ok' ? '🟢' : '🔴'}</span>
@@ -1048,7 +1104,10 @@ function Claw402ConfigForm({
               <div
                 className="flex items-center gap-2 text-xs"
                 style={{
-                  color: testResult.status === 'ok' ? 'var(--color-claw402-green)' : 'var(--color-danger)',
+                  color:
+                    testResult.status === 'ok'
+                      ? 'var(--color-claw402-green)'
+                      : 'var(--color-danger)',
                 }}
               >
                 <span>{testResult.status === 'ok' ? '✅' : '❌'}</span>
@@ -1073,7 +1132,10 @@ function Claw402ConfigForm({
         >
           {'💰 ' + t('modelConfig.howToFundUsdc', language)}
         </div>
-        <div className="text-xs space-y-1.5" style={{ color: 'var(--color-muted)' }}>
+        <div
+          className="text-xs space-y-1.5"
+          style={{ color: 'var(--color-muted)' }}
+        >
           <div className="flex items-start gap-2">
             <span className="font-bold" style={{ color: 'var(--color-muted)' }}>
               1.
@@ -1101,7 +1163,10 @@ function Claw402ConfigForm({
           type="button"
           onClick={onBack}
           className="flex-1 px-4 py-3 rounded-xl text-sm font-semibold transition-all hover:bg-white/5"
-          style={{ background: 'var(--color-border)', color: 'var(--color-muted)' }}
+          style={{
+            background: 'var(--color-border)',
+            color: 'var(--color-muted)',
+          }}
         >
           {editingModelId
             ? t('cancel', language)
@@ -1162,13 +1227,19 @@ function StandardProviderConfigForm({
             width: 32,
             height: 32,
           }) || (
-            <span className="text-lg font-bold" style={{ color: 'var(--color-primary-3)' }}>
+            <span
+              className="text-lg font-bold"
+              style={{ color: 'var(--color-primary-3)' }}
+            >
               {selectedModel.name[0]}
             </span>
           )}
         </div>
         <div className="flex-1">
-          <div className="font-semibold text-lg" style={{ color: 'var(--color-text)' }}>
+          <div
+            className="font-semibold text-lg"
+            style={{ color: 'var(--color-text)' }}
+          >
             {getShortName(selectedModel.name)}
           </div>
           <div className="text-xs" style={{ color: 'var(--color-muted)' }}>
@@ -1188,8 +1259,14 @@ function StandardProviderConfigForm({
               border: '1px solid rgba(139, 92, 246, 0.3)',
             }}
           >
-            <ExternalLink className="w-4 h-4" style={{ color: 'var(--color-primary-3)' }} />
-            <span className="text-sm font-medium" style={{ color: 'var(--color-primary-3)' }}>
+            <ExternalLink
+              className="w-4 h-4"
+              style={{ color: 'var(--color-primary-3)' }}
+            />
+            <span
+              className="text-sm font-medium"
+              style={{ color: 'var(--color-primary-3)' }}
+            >
               {selectedModel.provider?.startsWith('blockrun')
                 ? t('modelConfig.getStarted', language)
                 : t('modelConfig.getApiKey', language)}
@@ -1402,11 +1479,18 @@ function StandardProviderConfigForm({
                 >
                   <span
                     className="text-xs font-semibold"
-                    style={{ color: isSelected ? 'var(--color-primary-3)' : 'var(--color-text)' }}
+                    style={{
+                      color: isSelected
+                        ? 'var(--color-primary-3)'
+                        : 'var(--color-text)',
+                    }}
                   >
                     {m.name}
                   </span>
-                  <span className="text-[10px]" style={{ color: 'var(--color-muted)' }}>
+                  <span
+                    className="text-[10px]"
+                    style={{ color: 'var(--color-muted)' }}
+                  >
                     {m.desc}
                   </span>
                 </button>
@@ -1431,7 +1515,10 @@ function StandardProviderConfigForm({
           <Brain className="w-4 h-4" />
           {t('information', language)}
         </div>
-        <div className="text-xs space-y-1" style={{ color: 'var(--color-muted)' }}>
+        <div
+          className="text-xs space-y-1"
+          style={{ color: 'var(--color-muted)' }}
+        >
           <div>• {t('modelConfigInfo1', language)}</div>
           <div>• {t('modelConfigInfo2', language)}</div>
           <div>• {t('modelConfigInfo3', language)}</div>
@@ -1444,7 +1531,10 @@ function StandardProviderConfigForm({
           type="button"
           onClick={onBack}
           className="flex-1 px-4 py-3 rounded-xl text-sm font-semibold transition-all hover:bg-white/5"
-          style={{ background: 'var(--color-border)', color: 'var(--color-muted)' }}
+          style={{
+            background: 'var(--color-border)',
+            color: 'var(--color-muted)',
+          }}
         >
           {editingModelId
             ? t('cancel', language)

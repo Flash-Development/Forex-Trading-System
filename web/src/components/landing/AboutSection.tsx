@@ -16,7 +16,10 @@ export default function AboutSection({ language }: AboutSectionProps) {
     {
       icon: Cpu,
       title: language === 'zh' ? '多 AI 支持' : 'Multi-AI Support',
-      desc: language === 'zh' ? 'DeepSeek, GPT, Claude...' : 'DeepSeek, GPT, Claude...',
+      desc:
+        language === 'zh'
+          ? 'DeepSeek, GPT, Claude...'
+          : 'DeepSeek, GPT, Claude...',
     },
     {
       icon: BarChart3,
@@ -26,11 +29,17 @@ export default function AboutSection({ language }: AboutSectionProps) {
   ]
 
   return (
-    <section className="py-24 relative overflow-hidden" style={{ background: 'var(--color-bg)' }}>
+    <section
+      className="py-24 relative overflow-hidden"
+      style={{ background: 'var(--color-bg)' }}
+    >
       {/* Background Decoration */}
       <div
         className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-30"
-        style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)' }}
+        style={{
+          background:
+            'radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)',
+        }}
       />
 
       <div className="max-w-6xl mx-auto px-4">
@@ -49,18 +58,31 @@ export default function AboutSection({ language }: AboutSectionProps) {
                 border: '1px solid rgba(59, 130, 246, 0.2)',
               }}
             >
-              <Terminal className="w-4 h-4" style={{ color: 'var(--color-primary)' }} />
-              <span className="text-xs font-medium" style={{ color: 'var(--color-primary)' }}>
+              <Terminal
+                className="w-4 h-4"
+                style={{ color: 'var(--color-primary)' }}
+              />
+              <span
+                className="text-xs font-medium"
+                style={{ color: 'var(--color-primary)' }}
+              >
                 {t('aboutNofx', language)}
               </span>
             </motion.div>
 
-            <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: 'var(--color-text)' }}>
+            <h2
+              className="text-4xl lg:text-5xl font-bold mb-6"
+              style={{ color: 'var(--color-text)' }}
+            >
               {t('whatIsNofx', language)}
             </h2>
 
-            <p className="text-lg mb-8 leading-relaxed" style={{ color: 'var(--color-muted)' }}>
-              {t('nofxNotAnotherBot', language)} {t('nofxDescription1', language)}
+            <p
+              className="text-lg mb-8 leading-relaxed"
+              style={{ color: 'var(--color-muted)' }}
+            >
+              {t('nofxNotAnotherBot', language)}{' '}
+              {t('nofxDescription1', language)}
             </p>
 
             {/* Feature Pills */}
@@ -82,13 +104,22 @@ export default function AboutSection({ language }: AboutSectionProps) {
                     className="w-10 h-10 rounded-lg flex items-center justify-center"
                     style={{ background: 'rgba(59, 130, 246, 0.1)' }}
                   >
-                    <feature.icon className="w-5 h-5" style={{ color: 'var(--color-primary)' }} />
+                    <feature.icon
+                      className="w-5 h-5"
+                      style={{ color: 'var(--color-primary)' }}
+                    />
                   </div>
                   <div>
-                    <div className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
+                    <div
+                      className="text-sm font-semibold"
+                      style={{ color: 'var(--color-text)' }}
+                    >
                       {feature.title}
                     </div>
-                    <div className="text-xs" style={{ color: 'var(--color-dim)' }}>
+                    <div
+                      className="text-xs"
+                      style={{ color: 'var(--color-dim)' }}
+                    >
                       {feature.desc}
                     </div>
                   </div>
@@ -115,21 +146,45 @@ export default function AboutSection({ language }: AboutSectionProps) {
               {/* Terminal Header */}
               <div
                 className="flex items-center gap-2 px-4 py-3"
-                style={{ background: 'rgba(255, 255, 255, 0.03)', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+                }}
               >
                 <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ background: 'var(--color-terminal-red)' }} />
-                  <div className="w-3 h-3 rounded-full" style={{ background: 'var(--color-terminal-amber)' }} />
-                  <div className="w-3 h-3 rounded-full" style={{ background: 'var(--color-terminal-green)' }} />
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: 'var(--color-terminal-red)' }}
+                  />
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: 'var(--color-terminal-amber)' }}
+                  />
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ background: 'var(--color-terminal-green)' }}
+                  />
                 </div>
-                <span className="text-xs ml-2" style={{ color: 'var(--color-dim)' }}>terminal</span>
+                <span
+                  className="text-xs ml-2"
+                  style={{ color: 'var(--color-dim)' }}
+                >
+                  terminal
+                </span>
               </div>
 
               {/* Terminal Content */}
               <div className="p-6 font-mono text-sm space-y-2">
-                <div style={{ color: 'var(--color-dim)' }}>$ git clone https://github.com/Flash-Development/Flash-Tradaing-System.git</div>
-                <div style={{ color: 'var(--color-dim)' }}>$ cd nofx && chmod +x start.sh</div>
-                <div style={{ color: 'var(--color-dim)' }}>$ ./start.sh start --build</div>
+                <div style={{ color: 'var(--color-dim)' }}>
+                  $ git clone
+                  https://github.com/Flash-Development/Flash-Tradaing-System.git
+                </div>
+                <div style={{ color: 'var(--color-dim)' }}>
+                  $ cd nofx && chmod +x start.sh
+                </div>
+                <div style={{ color: 'var(--color-dim)' }}>
+                  $ ./start.sh start --build
+                </div>
                 <div className="pt-2" style={{ color: 'var(--color-primary)' }}>
                   ✓ {t('startupMessages1', language)}
                 </div>

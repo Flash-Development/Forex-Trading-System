@@ -56,7 +56,10 @@ export function FAQContent({
   return (
     <div className="space-y-12">
       {categories.map((category) => (
-        <div key={category.id} className="nofx-glass p-8 rounded-xl border border-white/5">
+        <div
+          key={category.id}
+          className="nofx-glass p-8 rounded-xl border border-white/5"
+        >
           {/* Category Header */}
           <div className="flex items-center gap-3 mb-6 pb-3 border-b border-white/10">
             <category.icon className="w-7 h-7 text-nofx-gold" />
@@ -146,7 +149,10 @@ export function FAQContent({
                               </code>
                             </li>
                             <li>
-                              打开 PR：base 选择 <code>Flash-Development/Flash-Tradaing-System:main</code>{' '}
+                              打开 PR：base 选择{' '}
+                              <code>
+                                Flash-Development/Flash-Tradaing-System:main
+                              </code>{' '}
                               ← compare 选择{' '}
                               <code>你的用户名/nofx:feat/your-topic</code>。
                             </li>
@@ -201,8 +207,11 @@ export function FAQContent({
                               </code>
                             </li>
                             <li>
-                              Open a PR: base <code>Flash-Development/Flash-Tradaing-System:main</code> ←
-                              compare{' '}
+                              Open a PR: base{' '}
+                              <code>
+                                Flash-Development/Flash-Tradaing-System:main
+                              </code>{' '}
+                              ← compare{' '}
                               <code>your-username/nofx:feat/your-topic</code>.
                             </li>
                             <li>
@@ -224,7 +233,9 @@ export function FAQContent({
                       >
                         {language === 'zh' ? (
                           <div className="text-sm">
-                            <strong style={{ color: 'var(--color-primary)' }}>提示：</strong>{' '}
+                            <strong style={{ color: 'var(--color-primary)' }}>
+                              提示：
+                            </strong>{' '}
                             参与贡献将享有激励制度（如
                             Bounty/奖金、荣誉徽章与鸣谢、优先
                             Review/合并与内测资格 等）。 可在任务中优先选择带
@@ -249,7 +260,9 @@ export function FAQContent({
                           </div>
                         ) : (
                           <div className="text-sm">
-                            <strong style={{ color: 'var(--color-primary)' }}>Note:</strong>{' '}
+                            <strong style={{ color: 'var(--color-primary)' }}>
+                              Note:
+                            </strong>{' '}
                             Contribution incentives are available (e.g., cash
                             bounties, badges & shout-outs, priority
                             review/merge, beta access). Prefer tasks with
@@ -324,7 +337,11 @@ export function FAQContent({
                             <li>
                               在 PR 中关联 Issue（示例：
                               <code className="ml-1">Closes #123</code>），PR
-                              目标选择 <code>Flash-Development/Flash-Tradaing-System:main</code>。
+                              目标选择{' '}
+                              <code>
+                                Flash-Development/Flash-Tradaing-System:main
+                              </code>
+                              。
                             </li>
                             <li>
                               保持与 <code>upstream/dev</code>{' '}
@@ -361,7 +378,11 @@ export function FAQContent({
                             <li>
                               Link the Issue in PR (e.g.,{' '}
                               <code className="ml-1">Closes #123</code>) and
-                              target <code>Flash-Development/Flash-Tradaing-System:main</code>.
+                              target{' '}
+                              <code>
+                                Flash-Development/Flash-Tradaing-System:main
+                              </code>
+                              .
                             </li>
                             <li>
                               Keep rebasing onto <code>upstream/dev</code>,
@@ -398,7 +419,9 @@ export function FAQContent({
                           </div>
                         ) : (
                           <div className="text-sm">
-                            <strong style={{ color: 'var(--color-primary)' }}>Note:</strong>{' '}
+                            <strong style={{ color: 'var(--color-primary)' }}>
+                              Note:
+                            </strong>{' '}
                             We offer contribution incentives (bounties, badges,
                             shout-outs, priority review/merge, beta access).
                             Look for tasks with

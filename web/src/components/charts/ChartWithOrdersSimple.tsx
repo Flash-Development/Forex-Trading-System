@@ -21,7 +21,13 @@ export function ChartWithOrdersSimple({
 
   useEffect(() => {
     const loadData = async () => {
-      console.log('[ChartSimple] Loading data for', symbol, interval, 'trader:', traderID)
+      console.log(
+        '[ChartSimple] Loading data for',
+        symbol,
+        interval,
+        'trader:',
+        traderID
+      )
       setLoading(true)
       setError(null)
 
@@ -44,13 +50,22 @@ export function ChartWithOrdersSimple({
         if (traderID) {
           const tradesUrl = `/api/trades?trader_id=${traderID}&symbol=${symbol}&limit=100`
           console.log('[ChartSimple] Fetching trades from:', tradesUrl)
-          const tradesResult = await httpClient.request(tradesUrl, { silent: true })
+          const tradesResult = await httpClient.request(tradesUrl, {
+            silent: true,
+          })
 
           if (tradesResult.success && tradesResult.data) {
-            console.log('[ChartSimple] Received trades:', tradesResult.data.length)
+            console.log(
+              '[ChartSimple] Received trades:',
+              tradesResult.data.length
+            )
             setOrderCount(tradesResult.data.length)
           } else {
-            console.warn('[ChartSimple] Failed to fetch trades:', tradesResult.message || 'Unknown error', tradesResult)
+            console.warn(
+              '[ChartSimple] Failed to fetch trades:',
+              tradesResult.message || 'Unknown error',
+              tradesResult
+            )
           }
         }
 
@@ -66,12 +81,26 @@ export function ChartWithOrdersSimple({
   }, [symbol, interval, traderID])
 
   return (
-    <div className="relative" style={{ background: 'var(--color-bg)', borderRadius: '8px', overflow: 'hidden', minHeight: height }}>
+    <div
+      className="relative"
+      style={{
+        background: 'var(--color-bg)',
+        borderRadius: '8px',
+        overflow: 'hidden',
+        minHeight: height,
+      }}
+    >
       {/* 标题栏 */}
-      <div className="flex items-center justify-between p-4" style={{ borderBottom: '1px solid #2A344A' }}>
+      <div
+        className="flex items-center justify-between p-4"
+        style={{ borderBottom: '1px solid #2A344A' }}
+      >
         <div className="flex items-center gap-3">
           <span className="text-xl">📈</span>
-          <h3 className="text-lg font-bold" style={{ color: 'var(--color-text)' }}>
+          <h3
+            className="text-lg font-bold"
+            style={{ color: 'var(--color-text)' }}
+          >
             {symbol} {interval} (测试模式)
           </h3>
         </div>
@@ -91,24 +120,63 @@ export function ChartWithOrdersSimple({
           </div>
         ) : (
           <>
-            <div className="p-4 rounded" style={{ background: 'var(--color-card)', border: '1px solid #2A344A' }}>
-              <div className="text-sm mb-2" style={{ color: 'var(--color-muted)' }}>币安K线数据</div>
-              <div className="text-2xl font-bold" style={{ color: 'var(--color-success)' }}>
+            <div
+              className="p-4 rounded"
+              style={{
+                background: 'var(--color-card)',
+                border: '1px solid #2A344A',
+              }}
+            >
+              <div
+                className="text-sm mb-2"
+                style={{ color: 'var(--color-muted)' }}
+              >
+                币安K线数据
+              </div>
+              <div
+                className="text-2xl font-bold"
+                style={{ color: 'var(--color-success)' }}
+              >
                 {klineCount} 根K线
               </div>
             </div>
 
             {traderID && (
-              <div className="p-4 rounded" style={{ background: 'var(--color-card)', border: '1px solid #2A344A' }}>
-                <div className="text-sm mb-2" style={{ color: 'var(--color-muted)' }}>历史订单数据</div>
-                <div className="text-2xl font-bold" style={{ color: 'var(--color-primary)' }}>
+              <div
+                className="p-4 rounded"
+                style={{
+                  background: 'var(--color-card)',
+                  border: '1px solid #2A344A',
+                }}
+              >
+                <div
+                  className="text-sm mb-2"
+                  style={{ color: 'var(--color-muted)' }}
+                >
+                  历史订单数据
+                </div>
+                <div
+                  className="text-2xl font-bold"
+                  style={{ color: 'var(--color-primary)' }}
+                >
                   {orderCount} 笔订单
                 </div>
               </div>
             )}
 
-            <div className="p-4 rounded" style={{ background: 'var(--color-card)', border: '1px solid #2A344A' }}>
-              <div className="text-sm mb-2" style={{ color: 'var(--color-muted)' }}>状态</div>
+            <div
+              className="p-4 rounded"
+              style={{
+                background: 'var(--color-card)',
+                border: '1px solid #2A344A',
+              }}
+            >
+              <div
+                className="text-sm mb-2"
+                style={{ color: 'var(--color-muted)' }}
+              >
+                状态
+              </div>
               <div className="text-lg" style={{ color: 'var(--color-text)' }}>
                 ✅ 数据获取正常，图表组件开发中
               </div>

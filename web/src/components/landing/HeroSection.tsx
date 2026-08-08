@@ -72,7 +72,10 @@ export default function HeroSection({ language }: HeroSectionProps) {
           }}
         >
           <Zap className="w-4 h-4" style={{ color: 'var(--color-primary)' }} />
-          <span className="text-sm font-medium" style={{ color: 'var(--color-primary)' }}>
+          <span
+            className="text-sm font-medium"
+            style={{ color: 'var(--color-primary)' }}
+          >
             {isLoading ? (
               t('githubStarsInDays', language)
             ) : language === 'zh' ? (
@@ -101,7 +104,9 @@ export default function HeroSection({ language }: HeroSectionProps) {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
         >
-          <span style={{ color: 'var(--color-text)' }}>{t('heroTitle1', language)}</span>
+          <span style={{ color: 'var(--color-text)' }}>
+            {t('heroTitle1', language)}
+          </span>
           <br />
           <span
             className="relative inline-block"

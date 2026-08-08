@@ -113,7 +113,11 @@ export function MarketTicker() {
         const pct = parseFloat(t.priceChangePercent)
         const isUp = pct > 0
         const isDown = pct < 0
-        const color = isUp ? 'var(--color-agent-green)' : isDown ? 'var(--color-danger)' : 'var(--color-agent-bg-2)'
+        const color = isUp
+          ? 'var(--color-agent-green)'
+          : isDown
+            ? 'var(--color-danger)'
+            : 'var(--color-agent-bg-2)'
         const bgColor = isUp
           ? 'rgba(0,229,160,0.06)'
           : isDown

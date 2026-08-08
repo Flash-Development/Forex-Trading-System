@@ -119,9 +119,9 @@ export function BeginnerGuideCards({
           ? isZh
             ? '已经可以创建'
             : 'Ready to create'
-        : isZh
-          ? '先完成前三步'
-          : 'Finish the first three steps first',
+          : isZh
+            ? '先完成前三步'
+            : 'Finish the first three steps first',
       ready: traderReady,
       actionLabel: traderReady
         ? isZh

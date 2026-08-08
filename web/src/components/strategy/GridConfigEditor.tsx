@@ -60,7 +60,10 @@ export function GridConfigEditor({
       {/* Trading Setup */}
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <DollarSign className="w-5 h-5" style={{ color: 'var(--color-primary)' }} />
+          <DollarSign
+            className="w-5 h-5"
+            style={{ color: 'var(--color-primary)' }}
+          />
           <h3 className="font-medium" style={{ color: 'var(--color-text)' }}>
             {ts(gridConfig.tradingPair, language)}
           </h3>
@@ -69,7 +72,10 @@ export function GridConfigEditor({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Symbol */}
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.symbol, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -94,7 +100,10 @@ export function GridConfigEditor({
 
           {/* Investment */}
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.totalInvestment, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -103,7 +112,12 @@ export function GridConfigEditor({
             <input
               type="number"
               value={config.total_investment}
-              onChange={(e) => updateField('total_investment', parseFloat(e.target.value) || 1000)}
+              onChange={(e) =>
+                updateField(
+                  'total_investment',
+                  parseFloat(e.target.value) || 1000
+                )
+              }
               disabled={disabled}
               min={100}
               step={100}
@@ -114,7 +128,10 @@ export function GridConfigEditor({
 
           {/* Leverage */}
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.leverage, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -123,7 +140,9 @@ export function GridConfigEditor({
             <input
               type="number"
               value={config.leverage}
-              onChange={(e) => updateField('leverage', parseInt(e.target.value) || 5)}
+              onChange={(e) =>
+                updateField('leverage', parseInt(e.target.value) || 5)
+              }
               disabled={disabled}
               min={1}
               max={5}
@@ -146,7 +165,10 @@ export function GridConfigEditor({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Grid Count */}
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.gridCount, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -155,7 +177,9 @@ export function GridConfigEditor({
             <input
               type="number"
               value={config.grid_count}
-              onChange={(e) => updateField('grid_count', parseInt(e.target.value) || 10)}
+              onChange={(e) =>
+                updateField('grid_count', parseInt(e.target.value) || 10)
+              }
               disabled={disabled}
               min={5}
               max={50}
@@ -166,7 +190,10 @@ export function GridConfigEditor({
 
           {/* Distribution */}
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.distribution, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -174,7 +201,12 @@ export function GridConfigEditor({
             </p>
             <NofxSelect
               value={config.distribution}
-              onChange={(val) => updateField('distribution', val as 'uniform' | 'gaussian' | 'pyramid')}
+              onChange={(val) =>
+                updateField(
+                  'distribution',
+                  val as 'uniform' | 'gaussian' | 'pyramid'
+                )
+              }
               disabled={disabled}
               className="w-full px-3 py-2 rounded"
               style={inputStyle}
@@ -191,7 +223,10 @@ export function GridConfigEditor({
       {/* Price Bounds */}
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <TrendingUp className="w-5 h-5" style={{ color: 'var(--color-primary)' }} />
+          <TrendingUp
+            className="w-5 h-5"
+            style={{ color: 'var(--color-primary)' }}
+          />
           <h3 className="font-medium" style={{ color: 'var(--color-text)' }}>
             {ts(gridConfig.priceBounds, language)}
           </h3>
@@ -201,7 +236,10 @@ export function GridConfigEditor({
         <div className="p-4 rounded-lg mb-4" style={sectionStyle}>
           <div className="flex items-center justify-between">
             <div>
-              <label className="block text-sm" style={{ color: 'var(--color-text)' }}>
+              <label
+                className="block text-sm"
+                style={{ color: 'var(--color-text)' }}
+              >
                 {ts(gridConfig.useAtrBounds, language)}
               </label>
               <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
@@ -212,7 +250,9 @@ export function GridConfigEditor({
               <input
                 type="checkbox"
                 checked={config.use_atr_bounds}
-                onChange={(e) => updateField('use_atr_bounds', e.target.checked)}
+                onChange={(e) =>
+                  updateField('use_atr_bounds', e.target.checked)
+                }
                 disabled={disabled}
                 className="sr-only peer"
               />
@@ -223,7 +263,10 @@ export function GridConfigEditor({
 
         {config.use_atr_bounds ? (
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.atrMultiplier, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -232,7 +275,9 @@ export function GridConfigEditor({
             <input
               type="number"
               value={config.atr_multiplier}
-              onChange={(e) => updateField('atr_multiplier', parseFloat(e.target.value) || 2.0)}
+              onChange={(e) =>
+                updateField('atr_multiplier', parseFloat(e.target.value) || 2.0)
+              }
               disabled={disabled}
               min={1}
               max={5}
@@ -244,16 +289,24 @@ export function GridConfigEditor({
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4 rounded-lg" style={sectionStyle}>
-              <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+              <label
+                className="block text-sm mb-1"
+                style={{ color: 'var(--color-text)' }}
+              >
                 {ts(gridConfig.upperPrice, language)}
               </label>
-              <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
+              <p
+                className="text-xs mb-2"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 {ts(gridConfig.upperPriceDesc, language)}
               </p>
               <input
                 type="number"
                 value={config.upper_price}
-                onChange={(e) => updateField('upper_price', parseFloat(e.target.value) || 0)}
+                onChange={(e) =>
+                  updateField('upper_price', parseFloat(e.target.value) || 0)
+                }
                 disabled={disabled}
                 min={0}
                 step={0.01}
@@ -262,16 +315,24 @@ export function GridConfigEditor({
               />
             </div>
             <div className="p-4 rounded-lg" style={sectionStyle}>
-              <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+              <label
+                className="block text-sm mb-1"
+                style={{ color: 'var(--color-text)' }}
+              >
                 {ts(gridConfig.lowerPrice, language)}
               </label>
-              <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
+              <p
+                className="text-xs mb-2"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 {ts(gridConfig.lowerPriceDesc, language)}
               </p>
               <input
                 type="number"
                 value={config.lower_price}
-                onChange={(e) => updateField('lower_price', parseFloat(e.target.value) || 0)}
+                onChange={(e) =>
+                  updateField('lower_price', parseFloat(e.target.value) || 0)
+                }
                 disabled={disabled}
                 min={0}
                 step={0.01}
@@ -286,7 +347,10 @@ export function GridConfigEditor({
       {/* Risk Control */}
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <Shield className="w-5 h-5" style={{ color: 'var(--color-primary)' }} />
+          <Shield
+            className="w-5 h-5"
+            style={{ color: 'var(--color-primary)' }}
+          />
           <h3 className="font-medium" style={{ color: 'var(--color-text)' }}>
             {ts(gridConfig.riskControl, language)}
           </h3>
@@ -294,7 +358,10 @@ export function GridConfigEditor({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.maxDrawdown, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -303,7 +370,12 @@ export function GridConfigEditor({
             <input
               type="number"
               value={config.max_drawdown_pct}
-              onChange={(e) => updateField('max_drawdown_pct', parseFloat(e.target.value) || 15)}
+              onChange={(e) =>
+                updateField(
+                  'max_drawdown_pct',
+                  parseFloat(e.target.value) || 15
+                )
+              }
               disabled={disabled}
               min={5}
               max={50}
@@ -313,7 +385,10 @@ export function GridConfigEditor({
           </div>
 
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.stopLoss, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -322,7 +397,9 @@ export function GridConfigEditor({
             <input
               type="number"
               value={config.stop_loss_pct}
-              onChange={(e) => updateField('stop_loss_pct', parseFloat(e.target.value) || 5)}
+              onChange={(e) =>
+                updateField('stop_loss_pct', parseFloat(e.target.value) || 5)
+              }
               disabled={disabled}
               min={1}
               max={20}
@@ -332,7 +409,10 @@ export function GridConfigEditor({
           </div>
 
           <div className="p-4 rounded-lg" style={sectionStyle}>
-            <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+            <label
+              className="block text-sm mb-1"
+              style={{ color: 'var(--color-text)' }}
+            >
               {ts(gridConfig.dailyLossLimit, language)}
             </label>
             <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
@@ -341,7 +421,12 @@ export function GridConfigEditor({
             <input
               type="number"
               value={config.daily_loss_limit_pct}
-              onChange={(e) => updateField('daily_loss_limit_pct', parseFloat(e.target.value) || 10)}
+              onChange={(e) =>
+                updateField(
+                  'daily_loss_limit_pct',
+                  parseFloat(e.target.value) || 10
+                )
+              }
               disabled={disabled}
               min={1}
               max={30}
@@ -355,7 +440,10 @@ export function GridConfigEditor({
         <div className="p-4 rounded-lg" style={sectionStyle}>
           <div className="flex items-center justify-between">
             <div>
-              <label className="block text-sm" style={{ color: 'var(--color-text)' }}>
+              <label
+                className="block text-sm"
+                style={{ color: 'var(--color-text)' }}
+              >
                 {ts(gridConfig.useMakerOnly, language)}
               </label>
               <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
@@ -366,7 +454,9 @@ export function GridConfigEditor({
               <input
                 type="checkbox"
                 checked={config.use_maker_only}
-                onChange={(e) => updateField('use_maker_only', e.target.checked)}
+                onChange={(e) =>
+                  updateField('use_maker_only', e.target.checked)
+                }
                 disabled={disabled}
                 className="sr-only peer"
               />
@@ -379,7 +469,10 @@ export function GridConfigEditor({
       {/* Direction Auto-Adjust */}
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <Compass className="w-5 h-5" style={{ color: 'var(--color-primary)' }} />
+          <Compass
+            className="w-5 h-5"
+            style={{ color: 'var(--color-primary)' }}
+          />
           <h3 className="font-medium" style={{ color: 'var(--color-text)' }}>
             {ts(gridConfig.directionAdjust, language)}
           </h3>
@@ -389,7 +482,10 @@ export function GridConfigEditor({
         <div className="p-4 rounded-lg mb-4" style={sectionStyle}>
           <div className="flex items-center justify-between">
             <div>
-              <label className="block text-sm" style={{ color: 'var(--color-text)' }}>
+              <label
+                className="block text-sm"
+                style={{ color: 'var(--color-text)' }}
+              >
                 {ts(gridConfig.enableDirectionAdjust, language)}
               </label>
               <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
@@ -400,7 +496,9 @@ export function GridConfigEditor({
               <input
                 type="checkbox"
                 checked={config.enable_direction_adjust ?? false}
-                onChange={(e) => updateField('enable_direction_adjust', e.target.checked)}
+                onChange={(e) =>
+                  updateField('enable_direction_adjust', e.target.checked)
+                }
                 disabled={disabled}
                 className="sr-only peer"
               />
@@ -412,38 +510,87 @@ export function GridConfigEditor({
         {config.enable_direction_adjust && (
           <>
             {/* Direction Modes Explanation */}
-            <div className="p-4 rounded-lg mb-4" style={{ background: 'var(--color-card)', border: '1px solid #3B82F633' }}>
-              <p className="text-xs font-medium mb-2" style={{ color: 'var(--color-primary)' }}>
+            <div
+              className="p-4 rounded-lg mb-4"
+              style={{
+                background: 'var(--color-card)',
+                border: '1px solid #3B82F633',
+              }}
+            >
+              <p
+                className="text-xs font-medium mb-2"
+                style={{ color: 'var(--color-primary)' }}
+              >
                 📊 {ts(gridConfig.directionModes, language)}
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs" style={{ color: 'var(--color-muted)' }}>
+              <div
+                className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 <div>• {ts(gridConfig.modeNeutral, language)}</div>
-                <div>• <span style={{ color: 'var(--color-success)' }}>{ts(gridConfig.modeLongBias, language)}</span></div>
-                <div>• <span style={{ color: 'var(--color-success)' }}>{ts(gridConfig.modeLong, language)}</span></div>
-                <div>• <span style={{ color: 'var(--color-danger)' }}>{ts(gridConfig.modeShortBias, language)}</span></div>
-                <div>• <span style={{ color: 'var(--color-danger)' }}>{ts(gridConfig.modeShort, language)}</span></div>
+                <div>
+                  •{' '}
+                  <span style={{ color: 'var(--color-success)' }}>
+                    {ts(gridConfig.modeLongBias, language)}
+                  </span>
+                </div>
+                <div>
+                  •{' '}
+                  <span style={{ color: 'var(--color-success)' }}>
+                    {ts(gridConfig.modeLong, language)}
+                  </span>
+                </div>
+                <div>
+                  •{' '}
+                  <span style={{ color: 'var(--color-danger)' }}>
+                    {ts(gridConfig.modeShortBias, language)}
+                  </span>
+                </div>
+                <div>
+                  •{' '}
+                  <span style={{ color: 'var(--color-danger)' }}>
+                    {ts(gridConfig.modeShort, language)}
+                  </span>
+                </div>
               </div>
-              <p className="text-xs mt-3 pt-2 border-t border-zinc-700" style={{ color: 'var(--color-muted)' }}>
+              <p
+                className="text-xs mt-3 pt-2 border-t border-zinc-700"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 💡 {ts(gridConfig.directionExplain, language)}
               </p>
             </div>
 
             {/* Bias Strength */}
             <div className="p-4 rounded-lg" style={sectionStyle}>
-              <label className="block text-sm mb-1" style={{ color: 'var(--color-text)' }}>
+              <label
+                className="block text-sm mb-1"
+                style={{ color: 'var(--color-text)' }}
+              >
                 {ts(gridConfig.directionBiasRatio, language)} (X)
               </label>
-              <p className="text-xs mb-1" style={{ color: 'var(--color-muted)' }}>
+              <p
+                className="text-xs mb-1"
+                style={{ color: 'var(--color-muted)' }}
+              >
                 {ts(gridConfig.directionBiasRatioDesc, language)}
               </p>
-              <p className="text-xs mb-3" style={{ color: 'var(--color-primary)' }}>
+              <p
+                className="text-xs mb-3"
+                style={{ color: 'var(--color-primary)' }}
+              >
                 {ts(gridConfig.directionBiasExplain, language)}
               </p>
               <div className="flex items-center gap-3">
                 <input
                   type="range"
                   value={(config.direction_bias_ratio ?? 0.7) * 100}
-                  onChange={(e) => updateField('direction_bias_ratio', parseInt(e.target.value) / 100)}
+                  onChange={(e) =>
+                    updateField(
+                      'direction_bias_ratio',
+                      parseInt(e.target.value) / 100
+                    )
+                  }
                   disabled={disabled}
                   min={55}
                   max={90}
@@ -451,18 +598,51 @@ export function GridConfigEditor({
                   className="flex-1 h-2 rounded-lg appearance-none cursor-pointer"
                   style={{ background: 'var(--color-border)' }}
                 />
-                <span className="text-sm font-mono w-20 text-right" style={{ color: 'var(--color-primary)' }}>
+                <span
+                  className="text-sm font-mono w-20 text-right"
+                  style={{ color: 'var(--color-primary)' }}
+                >
                   X = {Math.round((config.direction_bias_ratio ?? 0.7) * 100)}%
                 </span>
               </div>
               <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
-                <div className="p-2 rounded" style={{ background: '#10B98115', border: '1px solid #10B98130' }}>
-                  <span style={{ color: 'var(--color-success)' }}>Long Bias: </span>
-                  <span style={{ color: 'var(--color-text)' }}>{Math.round((config.direction_bias_ratio ?? 0.7) * 100)}% {ts(gridConfig.buy, language)} + {Math.round((1 - (config.direction_bias_ratio ?? 0.7)) * 100)}% {ts(gridConfig.sell, language)}</span>
+                <div
+                  className="p-2 rounded"
+                  style={{
+                    background: '#10B98115',
+                    border: '1px solid #10B98130',
+                  }}
+                >
+                  <span style={{ color: 'var(--color-success)' }}>
+                    Long Bias:{' '}
+                  </span>
+                  <span style={{ color: 'var(--color-text)' }}>
+                    {Math.round((config.direction_bias_ratio ?? 0.7) * 100)}%{' '}
+                    {ts(gridConfig.buy, language)} +{' '}
+                    {Math.round(
+                      (1 - (config.direction_bias_ratio ?? 0.7)) * 100
+                    )}
+                    % {ts(gridConfig.sell, language)}
+                  </span>
                 </div>
-                <div className="p-2 rounded" style={{ background: '#EF444415', border: '1px solid #EF444430' }}>
-                  <span style={{ color: 'var(--color-danger)' }}>Short Bias: </span>
-                  <span style={{ color: 'var(--color-text)' }}>{Math.round((1 - (config.direction_bias_ratio ?? 0.7)) * 100)}% {ts(gridConfig.buy, language)} + {Math.round((config.direction_bias_ratio ?? 0.7) * 100)}% {ts(gridConfig.sell, language)}</span>
+                <div
+                  className="p-2 rounded"
+                  style={{
+                    background: '#EF444415',
+                    border: '1px solid #EF444430',
+                  }}
+                >
+                  <span style={{ color: 'var(--color-danger)' }}>
+                    Short Bias:{' '}
+                  </span>
+                  <span style={{ color: 'var(--color-text)' }}>
+                    {Math.round(
+                      (1 - (config.direction_bias_ratio ?? 0.7)) * 100
+                    )}
+                    % {ts(gridConfig.buy, language)} +{' '}
+                    {Math.round((config.direction_bias_ratio ?? 0.7) * 100)}%{' '}
+                    {ts(gridConfig.sell, language)}
+                  </span>
                 </div>
               </div>
             </div>

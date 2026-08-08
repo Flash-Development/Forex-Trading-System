@@ -41,7 +41,11 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
   const { user, token } = useAuth()
   const [displayMode, setDisplayMode] = useState<'dollar' | 'percent'>('dollar')
 
-  const { data: history, error, isLoading } = useSWR<EquityPoint[]>(
+  const {
+    data: history,
+    error,
+    isLoading,
+  } = useSWR<EquityPoint[]>(
     user && token && traderId ? `equity-history-${traderId}` : null,
     () => api.getEquityHistory(traderId, true),
     {
@@ -66,7 +70,10 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
     return (
       <div className={embedded ? 'p-6' : 'binance-card p-6'}>
         {!embedded && (
-          <h3 className="text-lg font-semibold mb-6" style={{ color: 'var(--color-text)' }}>
+          <h3
+            className="text-lg font-semibold mb-6"
+            style={{ color: 'var(--color-text)' }}
+          >
             {t('accountEquityCurve', language)}
           </h3>
         )}
@@ -87,9 +94,15 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
             border: '1px solid rgba(239, 68, 68, 0.2)',
           }}
         >
-          <AlertTriangle className="w-6 h-6" style={{ color: 'var(--color-danger)' }} />
+          <AlertTriangle
+            className="w-6 h-6"
+            style={{ color: 'var(--color-danger)' }}
+          />
           <div>
-            <div className="font-semibold" style={{ color: 'var(--color-danger)' }}>
+            <div
+              className="font-semibold"
+              style={{ color: 'var(--color-danger)' }}
+            >
               {t('loadingError', language)}
             </div>
             <div className="text-sm" style={{ color: 'var(--color-muted)' }}>
@@ -108,11 +121,17 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
     return (
       <div className={embedded ? 'p-6' : 'binance-card p-6'}>
         {!embedded && (
-          <h3 className="text-lg font-semibold mb-6" style={{ color: 'var(--color-text)' }}>
+          <h3
+            className="text-lg font-semibold mb-6"
+            style={{ color: 'var(--color-text)' }}
+          >
             {t('accountEquityCurve', language)}
           </h3>
         )}
-        <div className="text-center py-16" style={{ color: 'var(--color-muted)' }}>
+        <div
+          className="text-center py-16"
+          style={{ color: 'var(--color-muted)' }}
+        >
           <div className="mb-4 flex justify-center opacity-50">
             <BarChart3 className="w-16 h-16" />
           </div>
@@ -189,17 +208,28 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
       return (
         <div
           className="rounded p-3 shadow-xl"
-          style={{ background: 'var(--color-card)', border: '1px solid #2A344A' }}
+          style={{
+            background: 'var(--color-card)',
+            border: '1px solid #2A344A',
+          }}
         >
           <div className="text-xs mb-1" style={{ color: 'var(--color-muted)' }}>
             Cycle #{data.cycle != null ? data.cycle : '—'}
           </div>
-          <div className="font-bold mono" style={{ color: 'var(--color-text)' }}>
+          <div
+            className="font-bold mono"
+            style={{ color: 'var(--color-text)' }}
+          >
             {data.raw_equity.toFixed(2)} USD
           </div>
           <div
             className="text-sm mono font-bold"
-            style={{ color: data.raw_pnl >= 0 ? 'var(--color-success)' : 'var(--color-danger)' }}
+            style={{
+              color:
+                data.raw_pnl >= 0
+                  ? 'var(--color-success)'
+                  : 'var(--color-danger)',
+            }}
           >
             {data.raw_pnl >= 0 ? '+' : ''}
             {data.raw_pnl.toFixed(2)} USD ({data.raw_pnl_pct >= 0 ? '+' : ''}
@@ -212,7 +242,11 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
   }
 
   return (
-    <div className={embedded ? 'p-3 sm:p-5' : 'binance-card p-3 sm:p-5 animate-fade-in'}>
+    <div
+      className={
+        embedded ? 'p-3 sm:p-5' : 'binance-card p-3 sm:p-5 animate-fade-in'
+      }
+    >
       {/* Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between mb-4">
         <div className="flex-1">
@@ -241,7 +275,9 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
               <span
                 className="text-sm sm:text-lg font-bold mono px-2 sm:px-3 py-1 rounded flex items-center gap-1"
                 style={{
-                  color: isProfit ? 'var(--color-success)' : 'var(--color-danger)',
+                  color: isProfit
+                    ? 'var(--color-success)'
+                    : 'var(--color-danger)',
                   background: isProfit
                     ? 'rgba(16, 185, 129, 0.1)'
                     : 'rgba(239, 68, 68, 0.1)',
@@ -341,8 +377,16 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
           >
             <defs>
               <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="var(--color-primary-3)" stopOpacity={0.2} />
+                <stop
+                  offset="5%"
+                  stopColor="var(--color-primary)"
+                  stopOpacity={0.8}
+                />
+                <stop
+                  offset="95%"
+                  stopColor="var(--color-primary-3)"
+                  stopOpacity={0.2}
+                />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
@@ -384,7 +428,11 @@ export function EquityChart({ traderId, embedded = false }: EquityChartProps) {
               dataKey="value"
               stroke="url(#colorGradient)"
               strokeWidth={3}
-              dot={chartData.length > 50 ? false : { fill: 'var(--color-primary)', r: 3 }}
+              dot={
+                chartData.length > 50
+                  ? false
+                  : { fill: 'var(--color-primary)', r: 3 }
+              }
               activeDot={{
                 r: 6,
                 fill: 'var(--color-primary-3)',

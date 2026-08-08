@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { ChevronDown, ChevronRight, RotateCcw, FileText } from 'lucide-react'
 import type { PromptSectionsConfig } from '../../types'
-import { promptSections as promptSectionsI18n, ts } from '../../i18n/strategy-translations'
+import {
+  promptSections as promptSectionsI18n,
+  ts,
+} from '../../i18n/strategy-translations'
 
 interface PromptSectionsEditorProps {
   config: PromptSectionsConfig | undefined
@@ -48,7 +51,9 @@ export function PromptSectionsEditor({
   disabled,
   language,
 }: PromptSectionsEditorProps) {
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+  const [expandedSections, setExpandedSections] = useState<
+    Record<string, boolean>
+  >({
     role_definition: false,
     trading_frequency: false,
     entry_standards: false,
@@ -56,10 +61,26 @@ export function PromptSectionsEditor({
   })
 
   const sections = [
-    { key: 'role_definition', label: ts(promptSectionsI18n.roleDefinition, language), desc: ts(promptSectionsI18n.roleDefinitionDesc, language) },
-    { key: 'trading_frequency', label: ts(promptSectionsI18n.tradingFrequency, language), desc: ts(promptSectionsI18n.tradingFrequencyDesc, language) },
-    { key: 'entry_standards', label: ts(promptSectionsI18n.entryStandards, language), desc: ts(promptSectionsI18n.entryStandardsDesc, language) },
-    { key: 'decision_process', label: ts(promptSectionsI18n.decisionProcess, language), desc: ts(promptSectionsI18n.decisionProcessDesc, language) },
+    {
+      key: 'role_definition',
+      label: ts(promptSectionsI18n.roleDefinition, language),
+      desc: ts(promptSectionsI18n.roleDefinitionDesc, language),
+    },
+    {
+      key: 'trading_frequency',
+      label: ts(promptSectionsI18n.tradingFrequency, language),
+      desc: ts(promptSectionsI18n.tradingFrequencyDesc, language),
+    },
+    {
+      key: 'entry_standards',
+      label: ts(promptSectionsI18n.entryStandards, language),
+      desc: ts(promptSectionsI18n.entryStandardsDesc, language),
+    },
+    {
+      key: 'decision_process',
+      label: ts(promptSectionsI18n.decisionProcess, language),
+      desc: ts(promptSectionsI18n.decisionProcessDesc, language),
+    },
   ]
 
   const currentConfig = config || {}
@@ -87,7 +108,10 @@ export function PromptSectionsEditor({
   return (
     <div className="space-y-4">
       <div className="flex items-start gap-2 mb-4">
-        <FileText className="w-5 h-5 mt-0.5" style={{ color: 'var(--color-purple)' }} />
+        <FileText
+          className="w-5 h-5 mt-0.5"
+          style={{ color: 'var(--color-purple)' }}
+        />
         <div>
           <h3 className="font-medium" style={{ color: 'var(--color-text)' }}>
             {ts(promptSectionsI18n.promptSections, language)}
@@ -103,13 +127,18 @@ export function PromptSectionsEditor({
           const sectionKey = key as keyof PromptSectionsConfig
           const isExpanded = expandedSections[key]
           const value = getValue(sectionKey)
-          const isModified = currentConfig[sectionKey] !== undefined && currentConfig[sectionKey] !== defaultSections[sectionKey]
+          const isModified =
+            currentConfig[sectionKey] !== undefined &&
+            currentConfig[sectionKey] !== defaultSections[sectionKey]
 
           return (
             <div
               key={key}
               className="rounded-lg overflow-hidden"
-              style={{ background: 'var(--color-bg)', border: '1px solid #2A344A' }}
+              style={{
+                background: 'var(--color-bg)',
+                border: '1px solid #2A344A',
+              }}
             >
               <button
                 onClick={() => toggleSection(key)}
@@ -117,30 +146,48 @@ export function PromptSectionsEditor({
               >
                 <div className="flex items-center gap-2">
                   {isExpanded ? (
-                    <ChevronDown className="w-4 h-4" style={{ color: 'var(--color-muted)' }} />
+                    <ChevronDown
+                      className="w-4 h-4"
+                      style={{ color: 'var(--color-muted)' }}
+                    />
                   ) : (
-                    <ChevronRight className="w-4 h-4" style={{ color: 'var(--color-muted)' }} />
+                    <ChevronRight
+                      className="w-4 h-4"
+                      style={{ color: 'var(--color-muted)' }}
+                    />
                   )}
-                  <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>
+                  <span
+                    className="text-sm font-medium"
+                    style={{ color: 'var(--color-text)' }}
+                  >
                     {label}
                   </span>
                   {isModified && (
                     <span
                       className="px-1.5 py-0.5 text-[10px] rounded"
-                      style={{ background: 'rgba(168, 85, 247, 0.15)', color: 'var(--color-purple)' }}
+                      style={{
+                        background: 'rgba(168, 85, 247, 0.15)',
+                        color: 'var(--color-purple)',
+                      }}
                     >
                       {ts(promptSectionsI18n.modified, language)}
                     </span>
                   )}
                 </div>
-                <span className="text-[10px]" style={{ color: 'var(--color-muted)' }}>
+                <span
+                  className="text-[10px]"
+                  style={{ color: 'var(--color-muted)' }}
+                >
                   {value.length} {ts(promptSectionsI18n.chars, language)}
                 </span>
               </button>
 
               {isExpanded && (
                 <div className="px-3 pb-3">
-                  <p className="text-xs mb-2" style={{ color: 'var(--color-muted)' }}>
+                  <p
+                    className="text-xs mb-2"
+                    style={{ color: 'var(--color-muted)' }}
+                  >
                     {desc}
                   </p>
                   <textarea

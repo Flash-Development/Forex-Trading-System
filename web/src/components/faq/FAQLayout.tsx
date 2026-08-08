@@ -138,7 +138,10 @@ export function FAQLayout({ language }: FAQLayoutProps) {
             border: '1px solid rgba(59, 130, 246, 0.2)',
           }}
         >
-          <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text)' }}>
+          <h3
+            className="text-xl font-bold mb-3"
+            style={{ color: 'var(--color-text)' }}
+          >
             {t('faqStillHaveQuestions', language)}
           </h3>
           <p className="mb-6" style={{ color: 'var(--color-muted)' }}>

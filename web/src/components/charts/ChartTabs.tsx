@@ -16,7 +16,13 @@ interface ChartTabsProps {
 
 type ChartTab = 'equity' | 'kline'
 type Interval = '1m' | '5m' | '15m' | '30m' | '1h' | '4h' | '1d'
-type MarketType = 'hyperliquid' | 'crypto' | 'stocks' | 'forex' | 'metals' | 'mt5'
+type MarketType =
+  | 'hyperliquid'
+  | 'crypto'
+  | 'stocks'
+  | 'forex'
+  | 'metals'
+  | 'mt5'
 
 interface SymbolInfo {
   symbol: string
@@ -26,12 +32,54 @@ interface SymbolInfo {
 
 // Market type configuration
 const MARKET_CONFIG = {
-  hyperliquid: { exchange: 'hyperliquid', defaultSymbol: 'BTC', icon: '🔷', labelKey: 'hyperliquid' as const, color: 'cyan', hasDropdown: true },
-  crypto: { exchange: 'binance', defaultSymbol: 'BTCUSD', icon: '₿', labelKey: 'crypto' as const, color: 'yellow', hasDropdown: false },
-  stocks: { exchange: 'alpaca', defaultSymbol: 'AAPL', icon: '📈', labelKey: 'stocks' as const, color: 'green', hasDropdown: false },
-  forex: { exchange: 'forex', defaultSymbol: 'EUR/USD', icon: '💱', labelKey: 'forex' as const, color: 'blue', hasDropdown: false },
-  metals: { exchange: 'metals', defaultSymbol: 'XAU/USD', icon: '🥇', labelKey: 'metals' as const, color: 'amber', hasDropdown: false },
-  mt5: { exchange: 'mt5', defaultSymbol: 'EURUSD', icon: '📊', labelKey: 'forex' as const, color: 'blue', hasDropdown: false },
+  hyperliquid: {
+    exchange: 'hyperliquid',
+    defaultSymbol: 'BTC',
+    icon: '🔷',
+    labelKey: 'hyperliquid' as const,
+    color: 'cyan',
+    hasDropdown: true,
+  },
+  crypto: {
+    exchange: 'binance',
+    defaultSymbol: 'BTCUSD',
+    icon: '₿',
+    labelKey: 'crypto' as const,
+    color: 'yellow',
+    hasDropdown: false,
+  },
+  stocks: {
+    exchange: 'alpaca',
+    defaultSymbol: 'AAPL',
+    icon: '📈',
+    labelKey: 'stocks' as const,
+    color: 'green',
+    hasDropdown: false,
+  },
+  forex: {
+    exchange: 'forex',
+    defaultSymbol: 'EUR/USD',
+    icon: '💱',
+    labelKey: 'forex' as const,
+    color: 'blue',
+    hasDropdown: false,
+  },
+  metals: {
+    exchange: 'metals',
+    defaultSymbol: 'XAU/USD',
+    icon: '🥇',
+    labelKey: 'metals' as const,
+    color: 'amber',
+    hasDropdown: false,
+  },
+  mt5: {
+    exchange: 'mt5',
+    defaultSymbol: 'EURUSD',
+    icon: '📊',
+    labelKey: 'forex' as const,
+    color: 'blue',
+    hasDropdown: false,
+  },
 }
 
 const INTERVALS: { value: Interval; label: string }[] = [
@@ -54,13 +102,20 @@ function getMarketTypeFromExchange(exchangeId: string | undefined): MarketType {
   return 'crypto'
 }
 
-export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: ChartTabsProps) {
+export function ChartTabs({
+  traderId,
+  selectedSymbol,
+  updateKey,
+  exchangeId,
+}: ChartTabsProps) {
   const { language } = useLanguage()
   const [activeTab, setActiveTab] = useState<ChartTab>('equity')
   const [chartSymbol, setChartSymbol] = useState<string>('BTC')
   const [interval, setInterval] = useState<Interval>('5m')
   const [symbolInput, setSymbolInput] = useState('')
-  const [marketType, setMarketType] = useState<MarketType>(() => getMarketTypeFromExchange(exchangeId))
+  const [marketType, setMarketType] = useState<MarketType>(() =>
+    getMarketTypeFromExchange(exchangeId)
+  )
   const [availableSymbols, setAvailableSymbols] = useState<SymbolInfo[]>([])
   const [showDropdown, setShowDropdown] = useState(false)
   const [searchFilter, setSearchFilter] = useState('')
@@ -75,38 +130,50 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
   // Determine exchange from market type
   const marketConfig = MARKET_CONFIG[marketType]
   // Prefer passed-in exchangeId (when not hyperliquid); for MT5 always use 'mt5'
-  const currentExchange = marketType === 'hyperliquid'
-    ? 'hyperliquid'
-    : marketType === 'mt5'
-      ? 'mt5'
-      : (exchangeId || marketConfig.exchange)
+  const currentExchange =
+    marketType === 'hyperliquid'
+      ? 'hyperliquid'
+      : marketType === 'mt5'
+        ? 'mt5'
+        : exchangeId || marketConfig.exchange
 
   // Fetch available symbol list
   useEffect(() => {
     if (marketConfig.hasDropdown) {
       fetch(`/api/symbols?exchange=${marketConfig.exchange}`)
-        .then(res => res.json())
-        .then(data => {
+        .then((res) => res.json())
+        .then((data) => {
           if (data.symbols) {
             // Sort by category: crypto > stock > forex > commodity > index
-            const categoryOrder: Record<string, number> = { crypto: 0, stock: 1, forex: 2, commodity: 3, index: 4 }
-            const sorted = [...data.symbols].sort((a: SymbolInfo, b: SymbolInfo) => {
-              const orderA = categoryOrder[a.category] ?? 5
-              const orderB = categoryOrder[b.category] ?? 5
-              if (orderA !== orderB) return orderA - orderB
-              return a.symbol.localeCompare(b.symbol)
-            })
+            const categoryOrder: Record<string, number> = {
+              crypto: 0,
+              stock: 1,
+              forex: 2,
+              commodity: 3,
+              index: 4,
+            }
+            const sorted = [...data.symbols].sort(
+              (a: SymbolInfo, b: SymbolInfo) => {
+                const orderA = categoryOrder[a.category] ?? 5
+                const orderB = categoryOrder[b.category] ?? 5
+                if (orderA !== orderB) return orderA - orderB
+                return a.symbol.localeCompare(b.symbol)
+              }
+            )
             setAvailableSymbols(sorted)
           }
         })
-        .catch(err => console.error('Failed to fetch symbols:', err))
+        .catch((err) => console.error('Failed to fetch symbols:', err))
     }
   }, [marketType, marketConfig.exchange, marketConfig.hasDropdown])
 
   // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setShowDropdown(false)
       }
     }
@@ -122,7 +189,7 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
   }
 
   // Filtered symbol list
-  const filteredSymbols = availableSymbols.filter(s =>
+  const filteredSymbols = availableSymbols.filter((s) =>
     s.symbol.toLowerCase().includes(searchFilter.toLowerCase())
   )
 
@@ -149,8 +216,13 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
   }
 
   return (
-    <div className={`nofx-glass rounded-lg border border-white/5 relative z-10 w-full flex flex-col transition-all duration-300 ${typeof window !== 'undefined' && window.innerWidth < 768 ? 'h-[500px]' : 'h-[600px]'
-      }`}>
+    <div
+      className={`nofx-glass rounded-lg border border-white/5 relative z-10 w-full flex flex-col transition-all duration-300 ${
+        typeof window !== 'undefined' && window.innerWidth < 768
+          ? 'h-[500px]'
+          : 'h-[600px]'
+      }`}
+    >
       {/* 
         Premium Professional Toolbar 
         Mobile: Single row, horizontal scroll with gradient mask
@@ -164,25 +236,31 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
         <div className="flex flex-wrap items-center gap-1">
           <button
             onClick={() => setActiveTab('equity')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-medium transition-all ${activeTab === 'equity'
-              ? 'bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20 shadow-[0_0_10px_rgba(59,130,246,0.1)]'
-              : 'text-nofx-text-muted hover:text-nofx-text-main hover:bg-white/5'
-              }`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-medium transition-all ${
+              activeTab === 'equity'
+                ? 'bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20 shadow-[0_0_10px_rgba(59,130,246,0.1)]'
+                : 'text-nofx-text-muted hover:text-nofx-text-main hover:bg-white/5'
+            }`}
           >
             <BarChart3 className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">{t('accountEquityCurve', language)}</span>
+            <span className="hidden md:inline">
+              {t('accountEquityCurve', language)}
+            </span>
             <span className="md:hidden">Eq</span>
           </button>
 
           <button
             onClick={() => setActiveTab('kline')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-medium transition-all ${activeTab === 'kline'
-              ? 'bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20 shadow-[0_0_10px_rgba(59,130,246,0.1)]'
-              : 'text-nofx-text-muted hover:text-nofx-text-main hover:bg-white/5'
-              }`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-medium transition-all ${
+              activeTab === 'kline'
+                ? 'bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20 shadow-[0_0_10px_rgba(59,130,246,0.1)]'
+                : 'text-nofx-text-muted hover:text-nofx-text-main hover:bg-white/5'
+            }`}
           >
             <CandlestickChart className="w-3.5 h-3.5" />
-            <span className="hidden md:inline">{t('marketChart', language)}</span>
+            <span className="hidden md:inline">
+              {t('marketChart', language)}
+            </span>
             <span className="md:hidden">Kline</span>
           </button>
 
@@ -196,10 +274,11 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
                   <button
                     key={type}
                     onClick={() => handleMarketTypeChange(type)}
-                    className={`px-2.5 py-1 text-[10px] font-medium rounded transition-all border ${isActive
-                      ? 'bg-white/10 text-white border-white/20'
-                      : 'text-nofx-text-muted border-transparent hover:text-nofx-text-main hover:bg-white/5'
-                      }`}
+                    className={`px-2.5 py-1 text-[10px] font-medium rounded transition-all border ${
+                      isActive
+                        ? 'bg-white/10 text-white border-white/20'
+                        : 'text-nofx-text-muted border-transparent hover:text-nofx-text-main hover:bg-white/5'
+                    }`}
                   >
                     <span className="mr-1 opacity-70">{config.icon}</span>
                     {ts(chartTabs[config.labelKey], language)}
@@ -222,7 +301,9 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
                     className="flex items-center gap-1.5 px-2.5 py-1 bg-black/40 border border-white/10 rounded text-[11px] font-bold text-nofx-text-main hover:border-nofx-gold/30 hover:text-nofx-gold transition-all"
                   >
                     <span>{chartSymbol}</span>
-                    <ChevronDown className={`w-3 h-3 text-nofx-text-muted transition-transform ${showDropdown ? 'rotate-180' : ''}`} />
+                    <ChevronDown
+                      className={`w-3 h-3 text-nofx-text-muted transition-transform ${showDropdown ? 'rotate-180' : ''}`}
+                    />
                   </button>
                   {showDropdown && (
                     <div className="absolute top-full right-0 mt-2 w-64 bg-[var(--color-bg)] border border-white/10 rounded-lg shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] z-50 overflow-hidden nofx-glass ring-1 ring-white/5">
@@ -240,32 +321,52 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
                         </div>
                       </div>
                       <div className="overflow-y-auto max-h-60 custom-scrollbar">
-                        {['crypto', 'stock', 'forex', 'commodity', 'index'].map(category => {
-                          const categorySymbols = filteredSymbols.filter(s => s.category === category)
-                          if (categorySymbols.length === 0) return null
-                          const labels: Record<string, string> = { crypto: 'Crypto', stock: 'Stocks', forex: 'Forex', commodity: 'Commodities', index: 'Index' }
-                          return (
-                            <div key={category}>
-                              <div className="px-3 py-1.5 text-[9px] font-bold text-nofx-text-muted/60 bg-white/5 uppercase tracking-wider">{labels[category]}</div>
-                              {categorySymbols.map(s => (
-                                <button
-                                  key={s.symbol}
-                                  onClick={() => { setChartSymbol(s.symbol); setShowDropdown(false); setSearchFilter('') }}
-                                  className={`w-full px-3 py-2 text-left text-[11px] font-mono hover:bg-white/5 transition-all flex items-center justify-between ${chartSymbol === s.symbol ? 'bg-nofx-gold/10 text-nofx-gold' : 'text-nofx-text-muted'}`}
-                                >
-                                  <span>{s.symbol}</span>
-                                  <span className="text-[9px] opacity-40">{s.name}</span>
-                                </button>
-                              ))}
-                            </div>
-                          )
-                        })}
+                        {['crypto', 'stock', 'forex', 'commodity', 'index'].map(
+                          (category) => {
+                            const categorySymbols = filteredSymbols.filter(
+                              (s) => s.category === category
+                            )
+                            if (categorySymbols.length === 0) return null
+                            const labels: Record<string, string> = {
+                              crypto: 'Crypto',
+                              stock: 'Stocks',
+                              forex: 'Forex',
+                              commodity: 'Commodities',
+                              index: 'Index',
+                            }
+                            return (
+                              <div key={category}>
+                                <div className="px-3 py-1.5 text-[9px] font-bold text-nofx-text-muted/60 bg-white/5 uppercase tracking-wider">
+                                  {labels[category]}
+                                </div>
+                                {categorySymbols.map((s) => (
+                                  <button
+                                    key={s.symbol}
+                                    onClick={() => {
+                                      setChartSymbol(s.symbol)
+                                      setShowDropdown(false)
+                                      setSearchFilter('')
+                                    }}
+                                    className={`w-full px-3 py-2 text-left text-[11px] font-mono hover:bg-white/5 transition-all flex items-center justify-between ${chartSymbol === s.symbol ? 'bg-nofx-gold/10 text-nofx-gold' : 'text-nofx-text-muted'}`}
+                                  >
+                                    <span>{s.symbol}</span>
+                                    <span className="text-[9px] opacity-40">
+                                      {s.name}
+                                    </span>
+                                  </button>
+                                ))}
+                              </div>
+                            )
+                          }
+                        )}
                       </div>
                     </div>
                   )}
                 </>
               ) : (
-                <span className="px-2.5 py-1 bg-black/40 border border-white/10 rounded text-[11px] font-bold text-nofx-text-main font-mono">{chartSymbol}</span>
+                <span className="px-2.5 py-1 bg-black/40 border border-white/10 rounded text-[11px] font-bold text-nofx-text-main font-mono">
+                  {chartSymbol}
+                </span>
               )}
             </div>
 
@@ -275,10 +376,11 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
                 <button
                   key={int.value}
                   onClick={() => setInterval(int.value)}
-                  className={`px-2 py-1 text-[10px] font-medium transition-all ${interval === int.value
-                    ? 'bg-nofx-gold/20 text-nofx-gold'
-                    : 'text-nofx-text-muted hover:text-white hover:bg-white/5'
-                    }`}
+                  className={`px-2 py-1 text-[10px] font-medium transition-all ${
+                    interval === int.value
+                      ? 'bg-nofx-gold/20 text-nofx-gold'
+                      : 'text-nofx-text-muted hover:text-white hover:bg-white/5'
+                  }`}
                 >
                   {int.label}
                 </button>
@@ -286,7 +388,10 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
             </div>
 
             {/* Quick Input - Hidden on mobile, dropdown search is enough */}
-            <form onSubmit={handleSymbolSubmit} className="hidden md:flex items-center shrink-0">
+            <form
+              onSubmit={handleSymbolSubmit}
+              className="hidden md:flex items-center shrink-0"
+            >
               <input
                 type="text"
                 value={symbolInput}
@@ -294,7 +399,10 @@ export function ChartTabs({ traderId, selectedSymbol, updateKey, exchangeId }: C
                 placeholder="Sym"
                 className="w-16 px-2 py-1 bg-black/40 border border-white/10 rounded-l text-[10px] text-white placeholder-gray-600 focus:outline-none focus:border-nofx-gold/50 font-mono transition-colors"
               />
-              <button type="submit" className="px-2 py-1 bg-white/5 border border-white/10 border-l-0 rounded-r text-[10px] text-nofx-text-muted hover:text-white hover:bg-white/10 transition-all">
+              <button
+                type="submit"
+                className="px-2 py-1 bg-white/5 border border-white/10 border-l-0 rounded-r text-[10px] text-nofx-text-muted hover:text-white hover:bg-white/10 transition-all"
+              >
                 Go
               </button>
             </form>

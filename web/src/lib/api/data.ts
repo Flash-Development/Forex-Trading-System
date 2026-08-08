@@ -28,10 +28,7 @@ export const dataApi = {
     return result.data!
   },
 
-  async getPositions(
-    traderId?: string,
-    silent?: boolean
-  ): Promise<Position[]> {
+  async getPositions(traderId?: string, silent?: boolean): Promise<Position[]> {
     const url = traderId
       ? `${API_BASE}/positions?trader_id=${traderId}`
       : `${API_BASE}/positions`
@@ -80,10 +77,7 @@ export const dataApi = {
     return result.data!
   },
 
-  async getEquityHistory(
-    traderId?: string,
-    silent?: boolean
-  ): Promise<any[]> {
+  async getEquityHistory(traderId?: string, silent?: boolean): Promise<any[]> {
     const url = traderId
       ? `${API_BASE}/equity-history?trader_id=${traderId}`
       : `${API_BASE}/equity-history`
@@ -92,7 +86,10 @@ export const dataApi = {
     return result.data!
   },
 
-  async getEquityHistoryBatch(traderIds: string[], hours?: number): Promise<any> {
+  async getEquityHistoryBatch(
+    traderIds: string[],
+    hours?: number
+  ): Promise<any> {
     const result = await httpClient.post<any>(
       `${API_BASE}/equity-history-batch`,
       { trader_ids: traderIds, hours: hours || 0 }

@@ -592,7 +592,9 @@ export function StrategyStudioPage() {
       )
       if (!response.ok) {
         const body = await response.json().catch(() => ({}))
-        throw new Error(body.error || `Failed to save strategy (${response.status})`)
+        throw new Error(
+          body.error || `Failed to save strategy (${response.status})`
+        )
       }
       setHasChanges(false)
       notify.success(tr('strategySaved'))
@@ -803,7 +805,9 @@ export function StrategyStudioPage() {
           onChange={(indicators) => updateAIConfig('indicators', indicators)}
           disabled={selectedStrategy?.is_default}
           language={language}
-          isForexMode={editingConfig?.ai_config?.coin_source?.source_type === 'forex'}
+          isForexMode={
+            editingConfig?.ai_config?.coin_source?.source_type === 'forex'
+          }
         />
       ),
     },
@@ -821,7 +825,9 @@ export function StrategyStudioPage() {
           }
           disabled={selectedStrategy?.is_default}
           language={language}
-          isForexMode={editingConfig?.ai_config?.coin_source?.source_type === 'forex'}
+          isForexMode={
+            editingConfig?.ai_config?.coin_source?.source_type === 'forex'
+          }
         />
       ),
     },

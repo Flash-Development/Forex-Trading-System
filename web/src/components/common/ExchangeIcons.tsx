@@ -104,7 +104,8 @@ export const getExchangeIcon = (
                     ? 'lighter'
                     : lowerType.includes('indodax')
                       ? 'indodax'
-                      : lowerType.includes('mt5') || lowerType.includes('metatrader')
+                      : lowerType.includes('mt5') ||
+                          lowerType.includes('metatrader')
                         ? 'mt5'
                         : lowerType
 

@@ -160,7 +160,11 @@ export const ChatInput = forwardRef<ChatInputHandle, ChatInputProps>(
                 : !value.trim()
                   ? 'rgba(255,255,255,0.04)'
                   : 'linear-gradient(135deg, #3B82F6, #d4a30a)',
-              color: loading ? 'var(--color-danger)' : !value.trim() ? 'var(--color-agent-dim)' : '#000',
+              color: loading
+                ? 'var(--color-danger)'
+                : !value.trim()
+                  ? 'var(--color-agent-dim)'
+                  : '#000',
               cursor: !loading && !value.trim() ? 'not-allowed' : 'pointer',
               display: 'grid',
               placeItems: 'center',

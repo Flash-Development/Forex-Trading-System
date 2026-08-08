@@ -19,7 +19,8 @@ export function TraderStatusPanel() {
       void mutate()
     }
     window.addEventListener('agent-config-refresh', handleRefresh)
-    return () => window.removeEventListener('agent-config-refresh', handleRefresh)
+    return () =>
+      window.removeEventListener('agent-config-refresh', handleRefresh)
   }, [mutate])
 
   if (!user || !token) {
@@ -89,7 +90,11 @@ export function TraderStatusPanel() {
             </div>
             <div>
               <div
-                style={{ fontSize: 13, fontWeight: 600, color: 'var(--color-agent-text)' }}
+                style={{
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: 'var(--color-agent-text)',
+                }}
               >
                 {trader.trader_name}
               </div>
@@ -107,7 +112,9 @@ export function TraderStatusPanel() {
               background: trader.is_running
                 ? 'rgba(0,229,160,0.12)'
                 : 'rgba(92,92,114,0.12)',
-              color: trader.is_running ? 'var(--color-agent-green)' : 'var(--color-agent-muted)',
+              color: trader.is_running
+                ? 'var(--color-agent-green)'
+                : 'var(--color-agent-muted)',
             }}
           >
             {trader.is_running ? 'RUNNING' : 'STOPPED'}

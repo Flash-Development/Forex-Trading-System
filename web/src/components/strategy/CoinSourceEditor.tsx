@@ -294,7 +294,10 @@ export function CoinSourceEditor({
           }}
         >
           <div className="flex items-center gap-2 mb-4">
-            <Globe className="w-4 h-4" style={{ color: 'var(--color-accent)' }} />
+            <Globe
+              className="w-4 h-4"
+              style={{ color: 'var(--color-accent)' }}
+            />
             <span className="text-sm font-medium text-nofx-text">
               {ts(coinSource.forexPairs, language)}
             </span>
@@ -446,7 +449,10 @@ export function CoinSourceEditor({
           {(config.forex_pairs || []).length > 0 && (
             <div
               className="p-3 rounded"
-              style={{ background: 'var(--color-bg)', border: '1px solid #2A344A' }}
+              style={{
+                background: 'var(--color-bg)',
+                border: '1px solid #2A344A',
+              }}
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-nofx-text-muted">

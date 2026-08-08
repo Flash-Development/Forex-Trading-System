@@ -72,7 +72,9 @@ export function PositionsPanel() {
       {openPositions.map((pos, i) => {
         const pnl = pos.unrealized_pnl
         const isProfit = pnl >= 0
-        const color = isProfit ? 'var(--color-agent-green)' : 'var(--color-danger)'
+        const color = isProfit
+          ? 'var(--color-agent-green)'
+          : 'var(--color-danger)'
         const side =
           pos.side?.toUpperCase() || (pos.quantity > 0 ? 'LONG' : 'SHORT')
         const rawSymbol = pos.symbol || ''
@@ -111,7 +113,14 @@ export function PositionsPanel() {
                   {symbol}
                 </span>
                 {isStock && (
-                  <span style={{ fontSize: 10, color: 'var(--color-agent-muted-3)' }}>🇺🇸</span>
+                  <span
+                    style={{
+                      fontSize: 10,
+                      color: 'var(--color-agent-muted-3)',
+                    }}
+                  >
+                    🇺🇸
+                  </span>
                 )}
                 <span
                   style={{
@@ -123,7 +132,10 @@ export function PositionsPanel() {
                       side === 'LONG'
                         ? 'rgba(0,229,160,0.12)'
                         : 'rgba(239,68,68,0.12)',
-                    color: side === 'LONG' ? 'var(--color-agent-green)' : 'var(--color-danger)',
+                    color:
+                      side === 'LONG'
+                        ? 'var(--color-agent-green)'
+                        : 'var(--color-danger)',
                   }}
                 >
                   {isStock ? (side === 'LONG' ? 'HOLD' : 'SHORT') : side}

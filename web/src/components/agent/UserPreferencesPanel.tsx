@@ -116,7 +116,13 @@ export function UserPreferencesPanel({ token, language }: Props) {
       }}
     >
       <div style={{ marginBottom: 8 }}>
-        <div style={{ color: 'var(--color-agent-text-2)', fontSize: 12, fontWeight: 600 }}>
+        <div
+          style={{
+            color: 'var(--color-agent-text-2)',
+            fontSize: 12,
+            fontWeight: 600,
+          }}
+        >
           {language === 'zh' ? '长期偏好' : 'Persistent Preferences'}
         </div>
         <div
@@ -165,7 +171,10 @@ export function UserPreferencesPanel({ token, language }: Props) {
               draft.trim() && !saving
                 ? 'rgba(59,130,246,0.12)'
                 : 'rgba(255,255,255,0.04)',
-            color: draft.trim() && !saving ? 'var(--color-primary)' : 'var(--color-agent-dim-2)',
+            color:
+              draft.trim() && !saving
+                ? 'var(--color-primary)'
+                : 'var(--color-agent-dim-2)',
             border: '1px solid rgba(59,130,246,0.14)',
             borderRadius: 8,
             padding: '0 10px',
@@ -178,7 +187,13 @@ export function UserPreferencesPanel({ token, language }: Props) {
       </div>
 
       {error && (
-        <div style={{ color: 'var(--color-danger)', fontSize: 11, marginBottom: 8 }}>
+        <div
+          style={{
+            color: 'var(--color-danger)',
+            fontSize: 11,
+            marginBottom: 8,
+          }}
+        >
           {error}
         </div>
       )}
@@ -189,7 +204,13 @@ export function UserPreferencesPanel({ token, language }: Props) {
             {language === 'zh' ? '加载中...' : 'Loading...'}
           </div>
         ) : preferences.length === 0 ? (
-          <div style={{ color: 'var(--color-agent-muted-2)', fontSize: 11, lineHeight: 1.5 }}>
+          <div
+            style={{
+              color: 'var(--color-agent-muted-2)',
+              fontSize: 11,
+              lineHeight: 1.5,
+            }}
+          >
             {language === 'zh'
               ? '还没有长期偏好。你可以把关注标的、风险倾向、回答习惯放在这里。'
               : 'No persistent preferences yet. Add watchlists, risk preferences, or response habits here.'}

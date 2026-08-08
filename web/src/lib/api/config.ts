@@ -99,20 +99,32 @@ export const configApi = {
     if (!result.success) throw new Error('Failed to update exchange configs')
   },
 
-  async createExchange(request: CreateExchangeRequest): Promise<{ id: string }> {
-    const result = await httpClient.post<{ id: string }>(`${API_BASE}/exchanges`, request)
-    if (!result.success) throw new Error(result.message || 'Failed to create exchange account')
+  async createExchange(
+    request: CreateExchangeRequest
+  ): Promise<{ id: string }> {
+    const result = await httpClient.post<{ id: string }>(
+      `${API_BASE}/exchanges`,
+      request
+    )
+    if (!result.success)
+      throw new Error(result.message || 'Failed to create exchange account')
     return result.data!
   },
 
-  async createExchangeEncrypted(request: CreateExchangeRequest): Promise<{ id: string }> {
+  async createExchangeEncrypted(
+    request: CreateExchangeRequest
+  ): Promise<{ id: string }> {
     // Check if transport encryption is enabled
     const config = await CryptoService.fetchCryptoConfig()
 
     if (!config.transport_encryption) {
       // Transport encryption disabled, send plaintext
-      const result = await httpClient.post<{ id: string }>(`${API_BASE}/exchanges`, request)
-      if (!result.success) throw new Error(result.message || 'Failed to create exchange account')
+      const result = await httpClient.post<{ id: string }>(
+        `${API_BASE}/exchanges`,
+        request
+      )
+      if (!result.success)
+        throw new Error(result.message || 'Failed to create exchange account')
       return result.data!
     }
 
@@ -138,13 +150,17 @@ export const configApi = {
       `${API_BASE}/exchanges`,
       encryptedPayload
     )
-    if (!result.success) throw new Error(result.message || 'Failed to create exchange account')
+    if (!result.success)
+      throw new Error(result.message || 'Failed to create exchange account')
     return result.data!
   },
 
   async deleteExchange(exchangeId: string): Promise<void> {
-    const result = await httpClient.delete(`${API_BASE}/exchanges/${exchangeId}`)
-    if (!result.success) throw new Error(result.message || 'Failed to delete exchange account')
+    const result = await httpClient.delete(
+      `${API_BASE}/exchanges/${exchangeId}`
+    )
+    if (!result.success)
+      throw new Error(result.message || 'Failed to delete exchange account')
   },
 
   async updateExchangeConfigsEncrypted(
@@ -156,7 +172,8 @@ export const configApi = {
     if (!config.transport_encryption) {
       // Transport encryption disabled, send plaintext
       const result = await httpClient.put(`${API_BASE}/exchanges`, request)
-      if (!result.success) throw new Error(result.message || 'Failed to update exchange configs')
+      if (!result.success)
+        throw new Error(result.message || 'Failed to update exchange configs')
       return
     }
 
@@ -182,7 +199,8 @@ export const configApi = {
       `${API_BASE}/exchanges`,
       encryptedPayload
     )
-    if (!result.success) throw new Error(result.message || 'Failed to update exchange configs')
+    if (!result.success)
+      throw new Error(result.message || 'Failed to update exchange configs')
   },
 
   async getServerIP(): Promise<{
@@ -212,7 +230,9 @@ export const configApi = {
       `${API_BASE}/onboarding/beginner/current`
     )
     if (!result.success || !result.data) {
-      throw new Error(result.message || 'Failed to fetch current beginner wallet')
+      throw new Error(
+        result.message || 'Failed to fetch current beginner wallet'
+      )
     }
     return result.data
   },

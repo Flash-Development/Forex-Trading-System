@@ -5,13 +5,23 @@ interface AgentStepPanelProps {
   visible?: boolean
 }
 
-const statusStyles: Record<AgentStep['status'], { dot: string; text: string }> = {
-  planning: { dot: 'var(--color-model-claw402)', text: 'var(--color-purple-2)' },
-  pending: { dot: 'rgba(255,255,255,0.18)', text: 'var(--color-agent-muted)' },
-  running: { dot: 'var(--color-primary)', text: 'var(--color-warning)' },
-  completed: { dot: 'var(--color-agent-green)', text: 'var(--color-agent-green)' },
-  replanned: { dot: 'var(--color-sky-400)', text: 'var(--color-accent)' },
-}
+const statusStyles: Record<AgentStep['status'], { dot: string; text: string }> =
+  {
+    planning: {
+      dot: 'var(--color-model-claw402)',
+      text: 'var(--color-purple-2)',
+    },
+    pending: {
+      dot: 'rgba(255,255,255,0.18)',
+      text: 'var(--color-agent-muted)',
+    },
+    running: { dot: 'var(--color-primary)', text: 'var(--color-warning)' },
+    completed: {
+      dot: 'var(--color-agent-green)',
+      text: 'var(--color-agent-green)',
+    },
+    replanned: { dot: 'var(--color-sky-400)', text: 'var(--color-accent)' },
+  }
 
 export function AgentStepPanel({ steps, visible }: AgentStepPanelProps) {
   if (!visible || !steps || steps.length === 0) {
@@ -34,7 +44,8 @@ export function AgentStepPanel({ steps, visible }: AgentStepPanelProps) {
         marginBottom: 12,
         padding: '10px 12px',
         borderRadius: 12,
-        background: 'linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015))',
+        background:
+          'linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015))',
         border: '1px solid rgba(255,255,255,0.06)',
       }}
     >

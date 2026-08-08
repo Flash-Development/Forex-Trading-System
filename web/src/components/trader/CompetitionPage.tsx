@@ -78,21 +78,13 @@ export function CompetitionPage() {
           {/* Competition Header - 精简版 */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
             <div className="flex items-center gap-3 md:gap-4">
-              <div
-                className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center bg-black/60 border border-nofx-gold/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]"
-              >
-                <Trophy
-                  className="w-6 h-6 md:w-7 md:h-7 text-nofx-gold"
-                />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center bg-black/60 border border-nofx-gold/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                <Trophy className="w-6 h-6 md:w-7 md:h-7 text-nofx-gold" />
               </div>
               <div>
-                <h1
-                  className="text-xl md:text-2xl font-bold flex items-center gap-2 text-white"
-                >
+                <h1 className="text-xl md:text-2xl font-bold flex items-center gap-2 text-white">
                   {t('aiCompetition', language)}
-                  <span
-                    className="text-xs font-normal px-2 py-1 rounded bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20"
-                  >
+                  <span className="text-xs font-normal px-2 py-1 rounded bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20">
                     0 {t('traders', language)}
                   </span>
                 </h1>
@@ -105,9 +97,7 @@ export function CompetitionPage() {
 
           {/* Empty State */}
           <div className="bg-black/40 border border-white/10 rounded-xl p-16 text-center backdrop-blur-md">
-            <Trophy
-              className="w-16 h-16 mx-auto mb-4 text-zinc-700"
-            />
+            <Trophy className="w-16 h-16 mx-auto mb-4 text-zinc-700" />
             <h3 className="text-lg font-bold mb-2 text-white">
               {t('noTraders', language)}
             </h3>
@@ -134,21 +124,13 @@ export function CompetitionPage() {
         {/* Competition Header - 精简版 */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
           <div className="flex items-center gap-3 md:gap-4">
-            <div
-              className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center bg-black/60 border border-nofx-gold/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]"
-            >
-              <Trophy
-                className="w-6 h-6 md:w-7 md:h-7 text-nofx-gold"
-              />
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl flex items-center justify-center bg-black/60 border border-nofx-gold/30 shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+              <Trophy className="w-6 h-6 md:w-7 md:h-7 text-nofx-gold" />
             </div>
             <div>
-              <h1
-                className="text-xl md:text-2xl font-bold flex items-center gap-2 text-white"
-              >
+              <h1 className="text-xl md:text-2xl font-bold flex items-center gap-2 text-white">
                 {t('aiCompetition', language)}
-                <span
-                  className="text-xs font-normal px-2 py-1 rounded bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20"
-                >
+                <span className="text-xs font-normal px-2 py-1 rounded bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20">
                   {competition.count} {t('traders', language)}
                 </span>
               </h1>
@@ -161,15 +143,16 @@ export function CompetitionPage() {
             <div className="text-xs mb-1 text-zinc-400">
               {t('leader', language)}
             </div>
-            <div
-              className="text-base md:text-lg font-bold text-nofx-gold"
-            >
+            <div className="text-base md:text-lg font-bold text-nofx-gold">
               {leader?.trader_name}
             </div>
             <div
               className="text-sm font-semibold"
               style={{
-                color: (leader?.total_pnl ?? 0) >= 0 ? 'var(--color-success)' : 'var(--color-danger)',
+                color:
+                  (leader?.total_pnl ?? 0) >= 0
+                    ? 'var(--color-success)'
+                    : 'var(--color-danger)',
               }}
             >
               {(leader?.total_pnl ?? 0) >= 0 ? '+' : ''}
@@ -186,9 +169,7 @@ export function CompetitionPage() {
             style={{ animationDelay: '0.1s' }}
           >
             <div className="flex items-center justify-between mb-6">
-              <h2
-                className="text-lg font-bold flex items-center gap-2 text-white"
-              >
+              <h2 className="text-lg font-bold flex items-center gap-2 text-white">
                 {t('performanceComparison', language)}
               </h2>
               <div className="text-xs text-zinc-400">
@@ -204,14 +185,10 @@ export function CompetitionPage() {
             style={{ animationDelay: '0.1s' }}
           >
             <div className="flex items-center justify-between mb-6">
-              <h2
-                className="text-lg font-bold flex items-center gap-2 text-white"
-              >
+              <h2 className="text-lg font-bold flex items-center gap-2 text-white">
                 {t('leaderboard', language)}
               </h2>
-              <div
-                className="text-xs px-2 py-1 rounded bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20 shadow-[0_0_8px_rgba(59,130,246,0.1)]"
-              >
+              <div className="text-xs px-2 py-1 rounded bg-nofx-gold/10 text-nofx-gold border border-nofx-gold/20 shadow-[0_0_8px_rgba(59,130,246,0.1)]">
                 {t('live', language)}
               </div>
             </div>
@@ -245,13 +222,14 @@ export function CompetitionPage() {
                         <div
                           className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold"
                           style={{
-                            background: index === 0
-                              ? 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)'
-                              : index === 1
-                                ? 'linear-gradient(135deg, #C0C0C0 0%, #E8E8E8 100%)'
-                                : index === 2
-                                  ? 'linear-gradient(135deg, #CD7F32 0%, #E8A64C 100%)'
-                                  : 'var(--color-border)',
+                            background:
+                              index === 0
+                                ? 'linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%)'
+                                : index === 1
+                                  ? 'linear-gradient(135deg, #C0C0C0 0%, #E8E8E8 100%)'
+                                  : index === 2
+                                    ? 'linear-gradient(135deg, #CD7F32 0%, #E8A64C 100%)'
+                                    : 'var(--color-border)',
                             color: index < 3 ? '#000' : 'var(--color-muted)',
                           }}
                         >
@@ -259,7 +237,10 @@ export function CompetitionPage() {
                         </div>
                         {/* Punk Avatar */}
                         <PunkAvatar
-                          seed={getTraderAvatar(trader.trader_id, trader.trader_name)}
+                          seed={getTraderAvatar(
+                            trader.trader_id,
+                            trader.trader_name
+                          )}
                           size={36}
                           className="rounded-lg"
                         />
@@ -284,7 +265,10 @@ export function CompetitionPage() {
                       <div className="flex items-center gap-2 md:gap-3 flex-wrap md:flex-nowrap">
                         {/* Total Equity */}
                         <div className="text-right">
-                          <div className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                          <div
+                            className="text-xs"
+                            style={{ color: 'var(--color-muted)' }}
+                          >
                             {t('equity', language)}
                           </div>
                           <div
@@ -297,7 +281,10 @@ export function CompetitionPage() {
 
                         {/* P&L */}
                         <div className="text-right min-w-[70px] md:min-w-[90px]">
-                          <div className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                          <div
+                            className="text-xs"
+                            style={{ color: 'var(--color-muted)' }}
+                          >
                             {t('pnl', language)}
                           </div>
                           <div
@@ -323,7 +310,10 @@ export function CompetitionPage() {
 
                         {/* Positions */}
                         <div className="text-right">
-                          <div className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                          <div
+                            className="text-xs"
+                            style={{ color: 'var(--color-muted)' }}
+                          >
                             {t('pos', language)}
                           </div>
                           <div
@@ -332,7 +322,10 @@ export function CompetitionPage() {
                           >
                             {trader.position_count}
                           </div>
-                          <div className="text-xs" style={{ color: 'var(--color-muted)' }}>
+                          <div
+                            className="text-xs"
+                            style={{ color: 'var(--color-muted)' }}
+                          >
                             {trader.margin_used_pct.toFixed(1)}%
                           </div>
                         </div>
@@ -344,13 +337,13 @@ export function CompetitionPage() {
                             style={
                               trader.is_running
                                 ? {
-                                  background: 'rgba(16, 185, 129, 0.1)',
-                                  color: 'var(--color-success)',
-                                }
+                                    background: 'rgba(16, 185, 129, 0.1)',
+                                    color: 'var(--color-success)',
+                                  }
                                 : {
-                                  background: 'rgba(239, 68, 68, 0.1)',
-                                  color: 'var(--color-danger)',
-                                }
+                                    background: 'rgba(239, 68, 68, 0.1)',
+                                    color: 'var(--color-danger)',
+                                  }
                             }
                           >
                             {trader.is_running ? '●' : '○'}
@@ -371,9 +364,7 @@ export function CompetitionPage() {
             className="bg-black/40 border border-white/10 rounded-xl p-6 backdrop-blur-md animate-slide-in"
             style={{ animationDelay: '0.3s' }}
           >
-            <h2
-              className="text-lg font-bold mb-6 flex items-center gap-2 text-white"
-            >
+            <h2 className="text-lg font-bold mb-6 flex items-center gap-2 text-white">
               {t('headToHead', language)}
             </h2>
             <div className="grid grid-cols-2 gap-4">
@@ -399,23 +390,26 @@ export function CompetitionPage() {
                     style={
                       isWinning
                         ? {
-                          background:
-                            'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 100%)',
-                          border: '2px solid rgba(16, 185, 129, 0.3)',
-                          boxShadow: '0 3px 15px rgba(16, 185, 129, 0.12)',
-                        }
+                            background:
+                              'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 100%)',
+                            border: '2px solid rgba(16, 185, 129, 0.3)',
+                            boxShadow: '0 3px 15px rgba(16, 185, 129, 0.12)',
+                          }
                         : {
-                          background: 'var(--color-bg)',
-                          border: '1px solid #2A344A',
-                          boxShadow: '0 1px 4px rgba(0, 0, 0, 0.3)',
-                        }
+                            background: 'var(--color-bg)',
+                            border: '1px solid #2A344A',
+                            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.3)',
+                          }
                     }
                   >
                     <div className="text-center">
                       {/* Avatar */}
                       <div className="flex justify-center mb-3">
                         <PunkAvatar
-                          seed={getTraderAvatar(trader.trader_id, trader.trader_name)}
+                          seed={getTraderAvatar(
+                            trader.trader_id,
+                            trader.trader_name
+                          )}
                           size={56}
                           className="rounded-xl"
                         />
@@ -423,7 +417,10 @@ export function CompetitionPage() {
                       <div
                         className="text-sm md:text-base font-bold mb-2"
                         style={{
-                          color: getTraderColor(sortedTraders, trader.trader_id),
+                          color: getTraderColor(
+                            sortedTraders,
+                            trader.trader_id
+                          ),
                         }}
                       >
                         {trader.trader_name}
@@ -432,11 +429,13 @@ export function CompetitionPage() {
                         className="text-lg md:text-2xl font-bold mono mb-1"
                         style={{
                           color:
-                            (trader.total_pnl ?? 0) >= 0 ? 'var(--color-success)' : 'var(--color-danger)',
+                            (trader.total_pnl ?? 0) >= 0
+                              ? 'var(--color-success)'
+                              : 'var(--color-danger)',
                         }}
                       >
                         {trader.total_pnl_pct != null &&
-                          !isNaN(trader.total_pnl_pct)
+                        !isNaN(trader.total_pnl_pct)
                           ? `${trader.total_pnl_pct >= 0 ? '+' : ''}${trader.total_pnl_pct.toFixed(2)}%`
                           : '—'}
                       </div>
